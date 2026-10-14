@@ -239,6 +239,77 @@ footer .f-info{display:grid;gap:2px}
 
 <meta name="description" content="Global Clear Aligners by Global Dental Lab LC: advanced 3D-printed clear aligners. Milwaukee, WI.">
 <style>:root{color-scheme:light}body{margin:0}</style>
+<style>
+/* Partner portal: full-screen sign in / register with admin approval */
+.q-acct{padding:4px 14px;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 55%,transparent);background:transparent;color:inherit;font:inherit;font-size:.78rem;font-weight:600;white-space:nowrap;cursor:pointer}
+.q-acct:hover{background:color-mix(in srgb,currentColor 14%,transparent)}
+.gm[hidden]{display:none}
+.gm{position:fixed;inset:0;z-index:1000;background:var(--bg);color:var(--fg)}
+.gm [hidden]{display:none!important}
+.gm-card{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(360px,1fr);width:100%;height:100%}
+.gm-card:focus{outline:none}
+.gm-art{background:var(--bg-2);display:flex;flex-direction:column;padding:34px 40px;min-width:0}
+.gm-art img{height:58px;width:auto;align-self:flex-start}
+.gm-teeth{width:min(100%,760px);height:auto;margin:auto;display:block}
+.gm-pane{position:relative;overflow:auto;overscroll-behavior:contain;display:flex;padding:56px clamp(22px,4vw,64px) 40px;background:var(--bg)}
+.gm-inner{width:100%;max-width:440px;margin:auto}
+.gm-mlogo{display:none;height:48px;width:auto;margin-bottom:28px}
+.gm-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:var(--muted);font-size:28px;line-height:1;cursor:pointer}
+.gm-x:hover{background:var(--bg-2);color:var(--fg)}
+.gm h2{font-family:var(--body);text-transform:none;font-weight:600;font-size:clamp(1.55rem,2.4vw,1.95rem);line-height:1.2;letter-spacing:0}
+.gm .sub{color:var(--muted);font-size:.98rem;line-height:1.55;margin:10px 0 26px}
+.gm label{display:block;font-size:.84rem;font-weight:600;margin:16px 0 6px}
+.gm label small{font-weight:400;color:var(--muted)}
+.gm-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:16px 0 6px}
+.gm-row label{margin:0}
+.gm input{width:100%;padding:.78em 1em;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;font-size:1rem}
+.gm input:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.gm-link{background:none;border:0;padding:0;font:inherit;font-size:.84rem;font-weight:500;color:var(--accent);cursor:pointer}
+.gm-link:hover{text-decoration:underline}
+.pw{position:relative}
+.pw input{padding-right:48px}
+.pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:38px;height:38px;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;display:grid;place-items:center}
+.pw button:hover{color:var(--fg)}
+.pw svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.gm form .btn{width:100%;margin-top:24px}
+.gm form .btn[disabled]{opacity:.6;cursor:progress}
+.gm-msg{margin-top:14px;font-size:.88rem;line-height:1.45;min-height:1.3em}
+.gm-msg.err{color:#B3261E}
+.gm-msg.ok{color:#1B7F4B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gm-msg.err{color:#FF9C94}:root:not([data-theme="light"]) .gm-msg.ok{color:#7FE0A8}}
+.gm-switch{margin-top:22px;text-align:center;font-size:.93rem;color:var(--muted)}
+.gm-switch .gm-link{font-size:inherit}
+.gm-more{margin-top:24px;padding-top:18px;border-top:1px solid var(--line);text-align:center;font-size:.88rem;color:var(--muted)}
+.gm-more a{color:var(--accent);text-decoration:none}
+.gm-more a:hover{text-decoration:underline}
+.gm-status{text-align:center;padding:6px 0 2px}
+.gm-status .disc{margin:0 auto 18px}
+.gm-status h3{font-family:var(--body);text-transform:none;font-weight:600;font-size:1.5rem;line-height:1.25;letter-spacing:0;margin-bottom:12px}
+.gm-status p{color:var(--muted);font-size:.96rem;line-height:1.6}
+.gm-status .btn{width:100%;margin-top:14px}
+.gm-status .btn:first-of-type{margin-top:26px}
+@media (max-width:900px){
+  .gm-card{grid-template-columns:1fr}
+  .gm-art{display:none}
+  .gm-mlogo{display:block}
+  .gm-pane{padding-top:72px}
+}
+.q-reg{background:color-mix(in srgb,currentColor 16%,transparent)}
+.gw{display:grid;place-items:center;padding:24px 20px;overflow:auto}
+.gw .gm-x{position:absolute;top:14px;right:14px}
+.gw-card{width:min(440px,100%);margin:auto;text-align:center}
+.gw-card:focus{outline:none}
+.gw-logo{display:block;height:92px;width:auto;margin:0 auto 22px}
+.gw h2{font-size:clamp(1.6rem,4vw,2rem)}
+.gw .sub{margin:10px 0 30px}
+.gw .btn{display:flex;width:100%;margin-top:14px;padding:1.05em 1.4em;font-size:1rem}
+.gw-open{background:#25D366;color:#06210F;border-color:#25D366}
+.gw-web{background:transparent;color:var(--fg);border-color:var(--fg)}
+.gw-note{margin-top:14px;font-size:.88rem;color:var(--muted)}
+.gw-dl{margin-top:28px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px;font-size:.98rem;color:var(--muted)}
+.gw-dl svg{flex:none}
+.gw-dl a{color:var(--fg);font-weight:600;text-decoration:none;border-bottom:3px solid #25D366}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -273,6 +344,8 @@ footer .f-info{display:grid;gap:2px}
       <button class="lang" id="lang" type="button" role="switch" aria-checked="false" aria-label="Language / Idioma: English, Español">
         <span class="lang-opt" data-l="en">EN</span><span class="lang-opt" data-l="es">ES</span><span class="lang-thumb"></span>
       </button>
+      <button class="q-acct q-reg" id="reg" type="button" aria-haspopup="dialog">Register</button>
+      <button class="q-acct" id="acct" type="button" aria-haspopup="dialog">Sign in</button>
       <a class="q-cta" href="mailto:info@globalclearaligners.com?subject=Request%20information" data-es="Solicitar información">Request info</a>
     </div>
   </div>
@@ -503,6 +576,104 @@ footer .f-info{display:grid;gap:2px}
   </div>
 </footer>
 
+<!-- Partner portal (sign in / register), full screen -->
+<div class="gm" id="gm" hidden>
+  <div class="gm-card" id="gm-card" role="dialog" aria-modal="true" aria-labelledby="gm-title" tabindex="-1">
+    <aside class="gm-art" aria-hidden="true">
+      <img class="gm-logo" alt="">
+      <svg class="gm-teeth" viewBox="0 0 560 250" aria-hidden="true"><defs><pattern id="gcaMesh" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 10L10 0M0 0L10 10" stroke="#3BB6C4" stroke-width="1" fill="none" opacity=".8"/></pattern></defs><g transform="translate(30.0 70.0) rotate(15.0)"><path d="M-17.0,-36.0 Q-17.0,-42.0 -10.0,-42.0 H10.0 Q17.0,-42.0 17.0,-36.0 V26.4 Q17.0,42.0 0,42.0 Q-17.0,42.0 -17.0,26.4 Z" style="fill:var(--bg-2)"/><path d="M-17.0,-36.0 Q-17.0,-42.0 -10.0,-42.0 H10.0 Q17.0,-42.0 17.0,-36.0 V26.4 Q17.0,42.0 0,42.0 Q-17.0,42.0 -17.0,26.4 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(530.0 70.0) rotate(-15.0)"><path d="M-17.0,-36.0 Q-17.0,-42.0 -10.0,-42.0 H10.0 Q17.0,-42.0 17.0,-36.0 V26.4 Q17.0,42.0 0,42.0 Q-17.0,42.0 -17.0,26.4 Z" style="fill:var(--bg-2)"/><path d="M-17.0,-36.0 Q-17.0,-42.0 -10.0,-42.0 H10.0 Q17.0,-42.0 17.0,-36.0 V26.4 Q17.0,42.0 0,42.0 Q-17.0,42.0 -17.0,26.4 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(75.5 87.2) rotate(12.3)"><path d="M-20.3,-41.1 Q-20.3,-47.1 -13.3,-47.1 H13.3 Q20.3,-47.1 20.3,-41.1 V28.4 Q20.3,47.1 0,47.1 Q-20.3,47.1 -20.3,28.4 Z" style="fill:var(--bg-2)"/><path d="M-20.3,-41.1 Q-20.3,-47.1 -13.3,-47.1 H13.3 Q20.3,-47.1 20.3,-41.1 V28.4 Q20.3,47.1 0,47.1 Q-20.3,47.1 -20.3,28.4 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(484.5 87.2) rotate(-12.3)"><path d="M-20.3,-41.1 Q-20.3,-47.1 -13.3,-47.1 H13.3 Q20.3,-47.1 20.3,-41.1 V28.4 Q20.3,47.1 0,47.1 Q-20.3,47.1 -20.3,28.4 Z" style="fill:var(--bg-2)"/><path d="M-20.3,-41.1 Q-20.3,-47.1 -13.3,-47.1 H13.3 Q20.3,-47.1 20.3,-41.1 V28.4 Q20.3,47.1 0,47.1 Q-20.3,47.1 -20.3,28.4 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(120.9 100.9) rotate(9.5)"><path d="M-23.5,-46.2 Q-23.5,-52.2 -16.5,-52.2 H16.5 Q23.5,-52.2 23.5,-46.2 V30.6 Q23.5,52.2 0,52.2 Q-23.5,52.2 -23.5,30.6 Z" style="fill:var(--bg-2)"/><path d="M-23.5,-46.2 Q-23.5,-52.2 -16.5,-52.2 H16.5 Q23.5,-52.2 23.5,-46.2 V30.6 Q23.5,52.2 0,52.2 Q-23.5,52.2 -23.5,30.6 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(439.1 100.9) rotate(-9.5)"><path d="M-23.5,-46.2 Q-23.5,-52.2 -16.5,-52.2 H16.5 Q23.5,-52.2 23.5,-46.2 V30.6 Q23.5,52.2 0,52.2 Q-23.5,52.2 -23.5,30.6 Z" style="fill:var(--bg-2)"/><path d="M-23.5,-46.2 Q-23.5,-52.2 -16.5,-52.2 H16.5 Q23.5,-52.2 23.5,-46.2 V30.6 Q23.5,52.2 0,52.2 Q-23.5,52.2 -23.5,30.6 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(166.4 111.3) rotate(6.8)"><path d="M-26.4,-51.3 Q-26.4,-57.3 -19.4,-57.3 H19.4 Q26.4,-57.3 26.4,-51.3 V33.0 Q26.4,57.3 0,57.3 Q-26.4,57.3 -26.4,33.0 Z" style="fill:var(--bg-2)"/><path d="M-26.4,-51.3 Q-26.4,-57.3 -19.4,-57.3 H19.4 Q26.4,-57.3 26.4,-51.3 V33.0 Q26.4,57.3 0,57.3 Q-26.4,57.3 -26.4,33.0 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(393.6 111.3) rotate(-6.8)"><path d="M-26.4,-51.3 Q-26.4,-57.3 -19.4,-57.3 H19.4 Q26.4,-57.3 26.4,-51.3 V33.0 Q26.4,57.3 0,57.3 Q-26.4,57.3 -26.4,33.0 Z" style="fill:var(--bg-2)"/><path d="M-26.4,-51.3 Q-26.4,-57.3 -19.4,-57.3 H19.4 Q26.4,-57.3 26.4,-51.3 V33.0 Q26.4,57.3 0,57.3 Q-26.4,57.3 -26.4,33.0 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(211.8 118.1) rotate(4.1)"><path d="M-29.0,-56.4 Q-29.0,-62.4 -22.0,-62.4 H22.0 Q29.0,-62.4 29.0,-56.4 V35.6 Q29.0,62.4 0,62.4 Q-29.0,62.4 -29.0,35.6 Z" style="fill:var(--bg-2)"/><path d="M-29.0,-56.4 Q-29.0,-62.4 -22.0,-62.4 H22.0 Q29.0,-62.4 29.0,-56.4 V35.6 Q29.0,62.4 0,62.4 Q-29.0,62.4 -29.0,35.6 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(348.2 118.1) rotate(-4.1)"><path d="M-29.0,-56.4 Q-29.0,-62.4 -22.0,-62.4 H22.0 Q29.0,-62.4 29.0,-56.4 V35.6 Q29.0,62.4 0,62.4 Q-29.0,62.4 -29.0,35.6 Z" style="fill:var(--bg-2)"/><path d="M-29.0,-56.4 Q-29.0,-62.4 -22.0,-62.4 H22.0 Q29.0,-62.4 29.0,-56.4 V35.6 Q29.0,62.4 0,62.4 Q-29.0,62.4 -29.0,35.6 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(257.3 121.6) rotate(1.4)"><path d="M-31.3,-61.5 Q-31.3,-67.5 -24.3,-67.5 H24.3 Q31.3,-67.5 31.3,-61.5 V38.7 Q31.3,67.5 0,67.5 Q-31.3,67.5 -31.3,38.7 Z" style="fill:var(--bg-2)"/><path d="M-31.3,-61.5 Q-31.3,-67.5 -24.3,-67.5 H24.3 Q31.3,-67.5 31.3,-61.5 V38.7 Q31.3,67.5 0,67.5 Q-31.3,67.5 -31.3,38.7 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="translate(302.7 121.6) rotate(-1.4)"><path d="M-31.3,-61.5 Q-31.3,-67.5 -24.3,-67.5 H24.3 Q31.3,-67.5 31.3,-61.5 V38.7 Q31.3,67.5 0,67.5 Q-31.3,67.5 -31.3,38.7 Z" style="fill:var(--bg-2)"/><path d="M-31.3,-61.5 Q-31.3,-67.5 -24.3,-67.5 H24.3 Q31.3,-67.5 31.3,-61.5 V38.7 Q31.3,67.5 0,67.5 Q-31.3,67.5 -31.3,38.7 Z" fill="url(#gcaMesh)" stroke="#3BB6C4" stroke-width="1.6" stroke-linejoin="round"/></g></svg>
+    </aside>
+
+    <div class="gm-pane">
+      <button class="gm-x" id="gm-x" type="button" aria-label="Close">&times;</button>
+      <div class="gm-inner">
+        <img class="gm-logo gm-mlogo" alt="Global Clear Aligners">
+
+        <div id="gm-head">
+          <h2 id="gm-title"></h2>
+          <p class="sub" id="gm-sub"></p>
+        </div>
+
+        <div id="gm-forms">
+          <form id="f-in" novalidate>
+            <label for="in-email" data-es="Correo electrónico">Email</label>
+            <input id="in-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+            <div class="gm-row">
+              <label for="in-pw" data-es="Contraseña">Password</label>
+              <button class="gm-link" type="button" id="go-fg" data-es="¿Olvidaste tu contraseña?">Forgot your password?</button>
+            </div>
+            <div class="pw">
+              <input id="in-pw" name="password" type="password" autocomplete="current-password" required>
+              <button type="button" class="eye" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+            <button class="btn btn-primary" type="submit" data-es="Iniciar sesión">Sign in</button>
+          </form>
+
+          <form id="f-up" hidden novalidate>
+            <label for="up-name" data-es="Nombre completo">Full name</label>
+            <input id="up-name" name="name" type="text" autocomplete="name" maxlength="120" required>
+            <label for="up-clinic"><span data-es="Clínica o consultorio">Clinic or practice</span> <small data-es="(opcional)">(optional)</small></label>
+            <input id="up-clinic" name="clinic" type="text" autocomplete="organization" maxlength="160">
+            <label for="up-email" data-es="Correo electrónico">Email</label>
+            <input id="up-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+            <label for="up-pw"><span data-es="Contraseña">Password</span> <small data-es="(mínimo 8 caracteres)">(min. 8 characters)</small></label>
+            <div class="pw">
+              <input id="up-pw" name="password" type="password" autocomplete="new-password" minlength="8" required>
+              <button type="button" class="eye" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+            <button class="btn btn-primary" type="submit" data-es="Crear cuenta">Create account</button>
+          </form>
+
+          <form id="f-fg" hidden novalidate>
+            <label for="fg-email" data-es="Correo electrónico">Email</label>
+            <input id="fg-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+            <button class="btn btn-primary" type="submit" data-es="Enviar enlace">Send link</button>
+          </form>
+
+          <form id="f-rs" hidden novalidate>
+            <label for="rs-pw"><span data-es="Nueva contraseña">New password</span> <small data-es="(mínimo 8 caracteres)">(min. 8 characters)</small></label>
+            <div class="pw">
+              <input id="rs-pw" name="password" type="password" autocomplete="new-password" minlength="8" required>
+              <button type="button" class="eye" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+            <button class="btn btn-primary" type="submit" data-es="Guardar contraseña">Save password</button>
+          </form>
+
+          <p class="gm-msg" id="gm-msg" role="alert" aria-live="polite"></p>
+          <p class="gm-switch" id="gm-switch"><span id="sw-txt"></span> <button class="gm-link" type="button" id="sw-btn"></button></p>
+          <p class="gm-more"><span data-es="Más info:">More info:</span> <a href="#home" id="go-home">globalclearaligners.com</a></p>
+        </div>
+
+        <div class="gm-status" id="gm-status" hidden>
+          <span class="disc"><svg class="ico"><use id="st-ico" href="#i-mail"/></svg></span>
+          <h3 id="st-title"></h3>
+          <p id="st-text"></p>
+          <button class="btn btn-primary" id="st-ok" type="button"></button>
+          <button class="btn btn-ghost" id="st-out" type="button" hidden></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Register via WhatsApp (number is set in the portal script) -->
+<div class="gm gw" id="gw" hidden>
+  <button class="gm-x" id="gw-x" type="button" aria-label="Close">&times;</button>
+  <div class="gw-card" id="gw-card" role="dialog" aria-modal="true" aria-labelledby="gw-title" tabindex="-1">
+    <img class="gm-logo gw-logo" alt="Global Clear Aligners">
+    <h2 id="gw-title">Global Clear Aligners</h2>
+    <p class="sub" data-es="Escríbenos por WhatsApp para solicitar tu registro.">Message us on WhatsApp to request your registration.</p>
+    <a class="btn gw-open" id="gw-app" href="#" data-es="Abrir aplicación">Open app</a>
+    <a class="btn gw-web" id="gw-web" href="#" target="_blank" rel="noopener" data-es="Continuar en WhatsApp Web">Continue to WhatsApp Web</a>
+    <p class="gw-note" id="gw-note" hidden data-es="El número de WhatsApp estará disponible muy pronto.">The WhatsApp number will be available very soon.</p>
+    <p class="gw-dl">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 5.2a6.8 6.8 0 0 0-5.9 10.2L5.2 18.8l3.5-.9A6.8 6.8 0 1 0 12 5.2z" fill="none" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.6 9.3c.2-.4.5-.4.7-.3.1.3.4 1 .4 1.1s0 .3-.2.5l-.3.4c.5 1 1.3 1.7 2.3 2.2l.5-.6c.1-.1.3-.2.5-.1l1.1.5c.2.1.2.3.2.4-.1.6-.7 1.1-1.3 1.1-2.4-.2-4.4-2-4.6-4.3 0-.4.3-.7.7-.9z" fill="#fff"/></svg>
+      <span data-es="¿No tienes la aplicación?">Don't have the app?</span>
+      <a href="https://www.whatsapp.com/download" target="_blank" rel="noopener" data-es="Descárgala ahora">Download now</a>
+    </p>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
@@ -669,6 +840,367 @@ footer .f-info{display:grid;gap:2px}
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
   }
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function () {
+  /* ---- Configuración (ver REGISTRO-SETUP.md) ---- */
+  var SUPABASE_URL = 'PEGA_AQUI_LA_URL_DE_TU_PROYECTO';
+  var SUPABASE_ANON_KEY = 'PEGA_AQUI_TU_ANON_KEY';
+  /* La anon key es pública por diseño; la seguridad la dan las políticas RLS de setup.sql. */
+  var WA_NUMBER = 'PEGA_AQUI_EL_NUMERO_DE_WHATSAPP'; /* solo dígitos con código de país, ej. 50255551234 */
+
+  var configured = /^https:\/\/[a-z0-9-]+\.supabase\.co/i.test(SUPABASE_URL) && SUPABASE_ANON_KEY.indexOf('PEGA_') !== 0;
+  var waOk = /^\d{8,15}$/.test(WA_NUMBER);
+  var sb = null;
+  if (configured && window.supabase) {
+    try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch (e) { sb = null; }
+  }
+
+  var T = {
+    en: {
+      reg: 'Register', acctIn: 'Sign in', acctMe: 'My account', close: 'Close', signOut: 'Sign out',
+      showPw: 'Show password', hidePw: 'Hide password',
+      inTitle: 'Welcome to Global Clear Aligners', inSub: 'Sign in to your account to access the platform.',
+      inSw: 'New to our platform?', inSwBtn: 'Create an account',
+      upTitle: 'Create your account', upSub: 'An administrator will approve it before it is activated.',
+      upSw: 'Already have an account?', upSwBtn: 'Sign in',
+      fgTitle: 'Forgot your password?', fgSub: 'Enter your email and we will send you a link to reset it.',
+      fgSw: '', fgSwBtn: 'Back to sign in',
+      rsTitle: 'New password', rsSub: 'Choose a new password for your account.',
+      pendTitle: 'Your registration is pending approval',
+      pendText: 'Thank you for registering. Your account has been created and is awaiting approval by an administrator. You will receive an email when it is activated.',
+      confTitle: 'Check your email',
+      confText: 'We sent you a confirmation link. Open it to finish your registration.',
+      rstTitle: 'Check your email',
+      rstText: 'If that email is registered, we sent you a link to reset your password.',
+      actTitle: 'Your account is active',
+      actText: 'You are signed in.',
+      actName: 'Welcome, {n}. You are signed in.',
+      denTitle: 'Access not available',
+      denText: 'This account has not been approved. Write to info@globalclearaligners.com if you think this is a mistake.',
+      creds: 'Incorrect email or password.',
+      exists: 'This email is already registered. Try signing in.',
+      unconf: 'Please confirm your email first. Check your inbox.',
+      rate: 'Too many attempts. Please wait a minute and try again.',
+      short: 'The password must be at least 8 characters.',
+      email: 'Please enter a valid email address.',
+      fill: 'Please fill in the required fields.',
+      pwdone: 'Password updated. You can sign in now.',
+      notcfg: 'Sign in is not available yet. Please try again soon.',
+      generic: 'Something went wrong. Please try again.',
+      waText: 'Hello, I would like to register with Global Clear Aligners.'
+    },
+    es: {
+      reg: 'Registrarse', acctIn: 'Iniciar sesión', acctMe: 'Mi cuenta', close: 'Cerrar', signOut: 'Cerrar sesión',
+      showPw: 'Mostrar contraseña', hidePw: 'Ocultar contraseña',
+      inTitle: 'Bienvenido a Global Clear Aligners', inSub: 'Inicia sesión en tu cuenta para ingresar a la plataforma.',
+      inSw: '¿Nuevo en nuestra plataforma?', inSwBtn: 'Crea una cuenta',
+      upTitle: 'Crea tu cuenta', upSub: 'Un administrador la aprobará antes de activarla.',
+      upSw: '¿Ya tienes cuenta?', upSwBtn: 'Inicia sesión',
+      fgTitle: '¿Olvidaste tu contraseña?', fgSub: 'Escribe tu correo y te enviaremos un enlace para restablecerla.',
+      fgSw: '', fgSwBtn: 'Volver a iniciar sesión',
+      rsTitle: 'Nueva contraseña', rsSub: 'Elige una nueva contraseña para tu cuenta.',
+      pendTitle: 'Tu registro está pendiente de aprobación',
+      pendText: 'Gracias por registrarte. Tu cuenta ha sido creada y está pendiente de aprobación por parte de un administrador. Recibirás un correo electrónico cuando sea activada.',
+      confTitle: 'Revisa tu correo',
+      confText: 'Te enviamos un enlace de confirmación. Ábrelo para terminar tu registro.',
+      rstTitle: 'Revisa tu correo',
+      rstText: 'Si ese correo está registrado, te enviamos un enlace para restablecer tu contraseña.',
+      actTitle: 'Tu cuenta está activa',
+      actText: 'Has iniciado sesión.',
+      actName: 'Bienvenido(a), {n}. Has iniciado sesión.',
+      denTitle: 'Acceso no disponible',
+      denText: 'Esta cuenta no fue aprobada. Escribe a info@globalclearaligners.com si crees que es un error.',
+      creds: 'Correo o contraseña incorrectos.',
+      exists: 'Este correo ya está registrado. Intenta iniciar sesión.',
+      unconf: 'Primero confirma tu correo. Revisa tu bandeja de entrada.',
+      rate: 'Demasiados intentos. Espera un minuto e inténtalo de nuevo.',
+      short: 'La contraseña debe tener al menos 8 caracteres.',
+      email: 'Escribe un correo electrónico válido.',
+      fill: 'Completa los campos obligatorios.',
+      pwdone: 'Contraseña actualizada. Ya puedes iniciar sesión.',
+      notcfg: 'El inicio de sesión aún no está disponible. Inténtalo pronto.',
+      generic: 'Algo salió mal. Inténtalo de nuevo.',
+      waText: 'Hola, quiero registrarme en Global Clear Aligners.'
+    }
+  };
+  function lang() { return document.documentElement.lang === 'es' ? 'es' : 'en'; }
+  function t(k) { return T[lang()][k]; }
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* Logo: reutiliza el del encabezado para no duplicar la imagen en el archivo */
+  var brandImg = document.querySelector('.brand img');
+  if (brandImg) [].forEach.call(document.querySelectorAll('.gm-logo'), function (i) { i.src = brandImg.src; });
+
+  var gm = $('gm'), gw = $('gw'), card = $('gm-card');
+  var btnReg = $('reg'), acct = $('acct'), msgEl = $('gm-msg');
+  var fIn = $('f-in'), fUp = $('f-up'), fFg = $('f-fg'), fRs = $('f-rs');
+  var head = $('gm-head'), titleEl = $('gm-title'), subEl = $('gm-sub');
+  var forms = $('gm-forms'), status = $('gm-status');
+  var swWrap = $('gm-switch'), swTxt = $('sw-txt'), swBtn = $('sw-btn');
+  var stTitle = $('st-title'), stText = $('st-text'), stOk = $('st-ok'), stOut = $('st-out'), stIco = $('st-ico');
+  var signedIn = false, userName = '', view = 'in', statusKey = null, msgKey = null, msgOk = false, lastFocus = null;
+
+  /* ---------- Render ---------- */
+  function renderTop() {
+    acct.textContent = signedIn ? t('acctMe') : t('acctIn');
+    btnReg.textContent = t('reg');
+    btnReg.hidden = signedIn;
+  }
+  function renderMsg() {
+    msgEl.textContent = msgKey ? t(msgKey) : '';
+    msgEl.className = 'gm-msg' + (msgKey ? (msgOk ? ' ok' : ' err') : '');
+  }
+  function setMsg(k, ok) { msgKey = k; msgOk = !!ok; renderMsg(); }
+  function renderHead() {
+    titleEl.textContent = t(view + 'Title');
+    subEl.textContent = t(view + 'Sub');
+    swTxt.textContent = t(view + 'Sw');
+    swBtn.textContent = t(view + 'SwBtn');
+    swWrap.hidden = view === 'rs';
+  }
+  function renderStatus() {
+    if (!statusKey) return;
+    var k = statusKey;
+    stTitle.textContent = t(k + 'Title');
+    var txt = t(k + 'Text');
+    if (k === 'act' && userName) txt = t('actName').replace('{n}', userName);
+    stText.textContent = txt;
+    stOk.textContent = t('close');
+    stOut.textContent = t('signOut');
+    stOut.hidden = k !== 'act';
+    stIco.setAttribute('href', (k === 'pend' || k === 'conf' || k === 'rst') ? '#i-mail' : '#i-shield');
+  }
+  function renderEyes() {
+    [].forEach.call(document.querySelectorAll('.gm .eye'), function (b) {
+      var shown = b.getAttribute('aria-pressed') === 'true';
+      b.setAttribute('aria-label', shown ? t('hidePw') : t('showPw'));
+    });
+    $('gm-x').setAttribute('aria-label', t('close'));
+    $('gw-x').setAttribute('aria-label', t('close'));
+  }
+  function waLinks() {
+    var app = $('gw-app'), web = $('gw-web'), note = $('gw-note');
+    if (!waOk) { app.href = '#'; web.href = '#'; note.hidden = false; return; }
+    var q = '&text=' + encodeURIComponent(t('waText'));
+    app.href = 'whatsapp://send?phone=' + WA_NUMBER + q;
+    web.href = 'https://web.whatsapp.com/send?phone=' + WA_NUMBER + q;
+    note.hidden = true;
+  }
+  function render() { renderTop(); renderHead(); renderMsg(); renderStatus(); renderEyes(); waLinks(); }
+
+  /* ---------- Vistas del inicio de sesión ---------- */
+  function setView(v) {
+    view = v; statusKey = null;
+    status.hidden = true; forms.hidden = false; head.hidden = false;
+    fIn.hidden = v !== 'in'; fUp.hidden = v !== 'up'; fFg.hidden = v !== 'fg'; fRs.hidden = v !== 'rs';
+    msgKey = null;
+    render();
+  }
+  function showStatus(k) {
+    statusKey = k;
+    forms.hidden = true; head.hidden = true; status.hidden = false;
+    renderStatus();
+    stOk.focus();
+  }
+  function focusFirst() {
+    var f = forms.querySelector('form:not([hidden]) input');
+    if (f) f.focus();
+  }
+
+  /* ---------- Abrir / cerrar pantallas ---------- */
+  function openLogin(v) {
+    closeAll(true);
+    lastFocus = document.activeElement;
+    if (signedIn && !v) showStatus('act'); else { setView(v || 'in'); }
+    gm.hidden = false;
+    if (!statusKey) focusFirst(); else stOk.focus();
+  }
+  function openWa() {
+    closeAll(true);
+    lastFocus = document.activeElement;
+    waLinks();
+    gw.hidden = false;
+    $('gw-app').focus();
+  }
+  function closeAll(keepFocus) {
+    gm.hidden = true; gw.hidden = true;
+    if (!keepFocus && lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
+  }
+  function openEl() { return !gm.hidden ? gm : (!gw.hidden ? gw : null); }
+
+  /* ---------- Helpers de formularios ---------- */
+  function busy(form, on) {
+    var b = form.querySelector('button[type=submit]');
+    b.disabled = on; b.setAttribute('aria-busy', on ? 'true' : 'false');
+  }
+  function ready() {
+    if (!sb) { setMsg(configured ? 'generic' : 'notcfg'); return false; }
+    return true;
+  }
+  function mapErr(err) {
+    var m = ((err && err.message) || '').toLowerCase(), s = err && err.status;
+    if (m.indexOf('invalid login') > -1) return 'creds';
+    if (m.indexOf('already registered') > -1) return 'exists';
+    if (m.indexOf('email not confirmed') > -1) return 'unconf';
+    if (s === 429 || m.indexOf('rate limit') > -1 || m.indexOf('too many') > -1) return 'rate';
+    if (m.indexOf('password') > -1 && (m.indexOf('least') > -1 || m.indexOf('weak') > -1 || m.indexOf('short') > -1)) return 'short';
+    if (m.indexOf('email') > -1 && m.indexOf('invalid') > -1) return 'email';
+    return 'generic';
+  }
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function val(d, k) { return (d.get(k) || '').toString(); }
+  async function profileOf(uid) {
+    return sb.from('profiles').select('status,full_name').eq('id', uid).maybeSingle();
+  }
+
+  /* ---------- Iniciar sesión (solo entra quien ya fue aprobado) ---------- */
+  fIn.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!ready()) return;
+    var d = new FormData(fIn), email = val(d, 'email').trim(), pw = val(d, 'password');
+    if (!email || !pw) return setMsg('fill');
+    setMsg(null); busy(fIn, true);
+    try {
+      var r = await sb.auth.signInWithPassword({ email: email, password: pw });
+      if (r.error) throw r.error;
+      var p = await profileOf(r.data.user.id);
+      if (p.error) throw p.error;
+      var st = p.data && p.data.status;
+      if (st === 'approved') {
+        signedIn = true; userName = (p.data.full_name || '').split(' ')[0];
+        renderTop(); showStatus('act'); fIn.reset();
+      } else {
+        await sb.auth.signOut();
+        showStatus(st === 'rejected' ? 'den' : 'pend');
+      }
+    } catch (err) { setMsg(mapErr(err)); }
+    finally { busy(fIn, false); }
+  });
+
+  /* ---------- Crear cuenta: queda pendiente de aprobación ---------- */
+  fUp.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!ready()) return;
+    var d = new FormData(fUp);
+    var name = val(d, 'name').trim(), clinic = val(d, 'clinic').trim(), email = val(d, 'email').trim(), pw = val(d, 'password');
+    if (!name || !email || !pw) return setMsg('fill');
+    if (!validEmail(email)) return setMsg('email');
+    if (pw.length < 8) return setMsg('short');
+    setMsg(null); busy(fUp, true);
+    try {
+      var r = await sb.auth.signUp({
+        email: email, password: pw,
+        options: { data: { full_name: name, clinic: clinic }, emailRedirectTo: location.origin + location.pathname }
+      });
+      if (r.error) throw r.error;
+      var u = r.data && r.data.user;
+      if (u && u.identities && u.identities.length === 0) { setMsg('exists'); return; }
+      if (r.data && r.data.session) { await sb.auth.signOut(); showStatus('pend'); }
+      else showStatus('conf');
+      fUp.reset();
+    } catch (err) { setMsg(mapErr(err)); }
+    finally { busy(fUp, false); }
+  });
+
+  /* ---------- Olvidé mi contraseña ---------- */
+  fFg.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!ready()) return;
+    var email = val(new FormData(fFg), 'email').trim();
+    if (!validEmail(email)) return setMsg('email');
+    setMsg(null); busy(fFg, true);
+    try {
+      var r = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
+      if (r.error) throw r.error;
+      showStatus('rst'); fFg.reset();
+    } catch (err) { setMsg(mapErr(err)); }
+    finally { busy(fFg, false); }
+  });
+
+  /* ---------- Nueva contraseña (llegando desde el correo) ---------- */
+  fRs.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!ready()) return;
+    var pw = val(new FormData(fRs), 'password');
+    if (pw.length < 8) return setMsg('short');
+    setMsg(null); busy(fRs, true);
+    try {
+      var r = await sb.auth.updateUser({ password: pw });
+      if (r.error) throw r.error;
+      await sb.auth.signOut();
+      signedIn = false; userName = '';
+      fRs.reset(); setView('in'); renderTop(); setMsg('pwdone', true);
+    } catch (err) { setMsg(mapErr(err)); }
+    finally { busy(fRs, false); }
+  });
+
+  /* ---------- Eventos de interfaz ---------- */
+  btnReg.addEventListener('click', openWa);
+  acct.addEventListener('click', function () { openLogin(); });
+  $('gm-x').addEventListener('click', function () { closeAll(); });
+  $('gw-x').addEventListener('click', function () { closeAll(); });
+  stOk.addEventListener('click', function () { closeAll(); });
+  stOut.addEventListener('click', async function () {
+    try { if (sb) await sb.auth.signOut(); } catch (e) {}
+    signedIn = false; userName = '';
+    setView('in'); focusFirst();
+  });
+  $('go-fg').addEventListener('click', function () { setView('fg'); focusFirst(); });
+  swBtn.addEventListener('click', function () { setView(view === 'in' ? 'up' : 'in'); focusFirst(); });
+  $('go-home').addEventListener('click', function () { closeAll(true); });
+  [].forEach.call(document.querySelectorAll('.gm .eye'), function (b) {
+    b.addEventListener('click', function () {
+      var inp = b.parentNode.querySelector('input');
+      var show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+      b.setAttribute('aria-pressed', show ? 'true' : 'false');
+      renderEyes();
+    });
+  });
+  [$('gw-app'), $('gw-web')].forEach(function (a) {
+    a.addEventListener('click', function (e) { if (!waOk) e.preventDefault(); });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    var ov = openEl();
+    if (!ov) return;
+    if (e.key === 'Escape') { closeAll(); return; }
+    if (e.key !== 'Tab') return;
+    var f = [].slice.call(ov.querySelectorAll('button,input,a[href]')).filter(function (el) {
+      return !el.disabled && el.offsetParent !== null;
+    });
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1], cur = document.activeElement;
+    if (e.shiftKey && (cur === first || cur.getAttribute('role') === 'dialog' || cur === ov)) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && cur === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* ---------- Sesión: restaurar y detectar recuperación de contraseña ---------- */
+  var recovering = /type=recovery/.test(location.hash);
+  if (sb) {
+    sb.auth.onAuthStateChange(function (ev) {
+      if (ev === 'PASSWORD_RECOVERY') { openLogin('rs'); }
+    });
+    if (!recovering) {
+      sb.auth.getSession().then(async function (res) {
+        var s = res.data && res.data.session;
+        if (!s) return;
+        var p = await profileOf(s.user.id);
+        if (p.data && p.data.status === 'approved') {
+          signedIn = true; userName = (p.data.full_name || '').split(' ')[0];
+        } else { await sb.auth.signOut(); }
+        renderTop();
+      }).catch(function () {});
+    }
+  }
+
+  /* Seguir el cambio de idioma EN/ES del sitio */
+  new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  render();
 })();
 </script>
 
