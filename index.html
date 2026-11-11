@@ -309,6 +309,156 @@ footer .f-info{display:grid;gap:2px}
 .gw-dl{margin-top:28px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px;font-size:.98rem;color:var(--muted)}
 .gw-dl svg{flex:none}
 .gw-dl a{color:var(--fg);font-weight:600;text-decoration:none;border-bottom:3px solid #25D366}
+/* Partner portal app */
+.pt[hidden]{display:none}
+.pt{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;background:var(--bg-2);color:var(--fg);font-size:16px}
+.pt [hidden]{display:none!important}
+.pt button{font:inherit}
+.pt-bar{flex:none;padding:calc(12px + env(safe-area-inset-top,0px)) var(--gut) 0}
+.pt-top{position:relative;max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:16px;background:var(--bg);box-shadow:0 6px 24px rgba(10,20,48,.08)}
+.pt-ib{position:relative;flex:none;width:42px;height:42px;border:0;border-radius:12px;background:transparent;color:var(--accent);display:grid;place-items:center;cursor:pointer}
+.pt-ib:hover{background:var(--bg-2)}
+.pt-ib svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pt-brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.15rem;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+.pt-brand img{height:30px;width:auto;flex:none}
+.pt-brand span{overflow:hidden;text-overflow:ellipsis}
+.pt-lang{flex:none;height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:.75rem;font-weight:700;letter-spacing:.06em;cursor:pointer}
+.pt-sw{position:relative;flex:none;display:inline-grid;grid-template-columns:1fr 1fr;width:78px;height:34px;padding:0;border:1px solid var(--line);border-radius:999px;background:var(--bg-2);cursor:pointer;font:inherit;color:var(--fg)}
+.pt-sw-opt{position:relative;z-index:1;display:grid;place-items:center;font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--muted);transition:color .25s}
+.pt-sw-thumb{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:var(--accent);transition:transform .25s ease}
+.pt-sw[aria-checked="true"] .pt-sw-thumb{transform:translateX(100%)}
+.pt-sw[aria-checked="false"] .pt-sw-opt[data-l="en"],.pt-sw[aria-checked="true"] .pt-sw-opt[data-l="es"]{color:var(--accent-fg)}
+@media (prefers-reduced-motion:reduce){.pt-sw-thumb{transition:none}}
+.pt-av{position:relative;flex:none;width:42px;height:42px;margin-left:2px;border:0;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-weight:700;font-size:.88rem;cursor:pointer;display:grid;place-items:center}
+.pt-av .dot{position:absolute;right:0;bottom:1px;width:11px;height:11px;border-radius:50%;background:#2DBE60;border:2px solid var(--bg)}
+.pt-pop{position:absolute;top:calc(100% + 8px);right:8px;z-index:5;width:min(320px,calc(100vw - 32px));padding:10px;border-radius:14px;background:var(--bg);border:1px solid var(--line);box-shadow:0 16px 40px rgba(10,20,48,.18)}
+.pt-pop-n{font-weight:600;padding:6px 8px 0;overflow-wrap:anywhere}
+.pt-pop-e{font-size:.82rem;color:var(--muted);padding:0 8px 8px;overflow-wrap:anywhere;border-bottom:1px solid var(--line);margin-bottom:6px}
+.pt-pop-b{display:block;width:100%;text-align:left;padding:10px 8px;border:0;border-radius:10px;background:transparent;color:var(--fg);cursor:pointer;font-size:.92rem}
+.pt-pop-b:hover{background:var(--bg-2)}
+.pt-pop-l{display:flex;justify-content:space-between;gap:12px;padding:9px 8px;font-size:.86rem;border-bottom:1px solid var(--line)}
+.pt-pop-l:last-child{border-bottom:0}
+.pt-pop-l b{font-weight:600}
+.pt-pop-l span{color:var(--muted);white-space:nowrap}
+.pt-pop-0{padding:12px 8px;color:var(--muted);font-size:.9rem}
+
+.pt-scrim{position:absolute;inset:0;z-index:20;background:rgba(10,20,48,.5)}
+.pt-side{display:none;position:absolute;top:0;bottom:0;left:0;z-index:21;width:min(300px,86vw);background:var(--bg);box-shadow:8px 0 40px rgba(10,20,48,.25);padding:calc(16px + env(safe-area-inset-top,0px)) 14px 20px;flex-direction:column;gap:18px;overflow:auto}
+.pt-side.open{display:flex;animation:ptSlide .2s ease-out}
+@keyframes ptSlide{from{transform:translateX(-24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.pt-side.open{animation:none}}
+.pt-side-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 4px}
+.pt-side-h img{height:40px;width:auto}
+.pt-nav-list{display:grid;gap:6px}
+.pt-nav{display:flex;align-items:center;gap:14px;width:100%;padding:13px 14px;border:0;border-radius:12px;background:transparent;color:var(--muted);font-size:1rem;text-align:left;cursor:pointer}
+.pt-nav svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pt-nav:hover{background:var(--bg-2);color:var(--fg)}
+.pt-nav.on{background:var(--accent);color:var(--accent-fg);box-shadow:0 8px 20px color-mix(in srgb,var(--accent) 35%,transparent)}
+.pt-nav-site{margin-top:14px;border-top:1px solid var(--line);border-radius:0 0 12px 12px;padding-top:18px}
+
+.pt-main{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:26px var(--gut) 70px}
+.pt-main:focus{outline:none}
+.pt-wrap{max-width:1100px;margin:0 auto}
+.pt-h{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1;margin:6px 0 10px}
+.pt-sub{color:var(--muted);font-size:1rem;line-height:1.55;max-width:60ch}
+.pt-search{position:relative;margin-top:22px;max-width:520px}
+.pt-search svg{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round;pointer-events:none}
+.pt-search input{width:100%;padding:.85em 3em .85em 1.1em;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;font-size:1rem}
+.pt-search input:focus-visible,.in:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.pt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px;margin-top:22px}
+.pt-card{display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 8px 28px rgba(10,20,48,.07)}
+.pt-media{background:var(--bg-2);aspect-ratio:16/10;display:grid;place-items:center;border-bottom:1px solid var(--line)}
+.pt-media svg{width:90%;height:auto;max-height:92%}
+.pt-body{flex:1;padding:18px 20px 18px}
+.pt-body h3{font-family:var(--body);text-transform:none;font-weight:600;font-size:1.1rem;line-height:1.3;margin-bottom:8px}
+.pt-body p{color:var(--muted);font-size:.92rem;line-height:1.55}
+.pt-pedir{width:100%;border-radius:0;padding:1.05em;background:var(--accent);color:var(--accent-fg)}
+.pt-pedir:hover{filter:brightness(1.08)}
+.pt-pedir svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.pt-empty{margin-top:26px;color:var(--muted)}
+
+.pt-back{display:inline-flex;align-items:center;gap:6px;padding:6px 10px 6px 4px;margin:0 0 8px -4px;border:0;border-radius:10px;background:transparent;color:var(--accent);font-weight:600;font-size:.9rem;cursor:pointer}
+.pt-back:hover{background:var(--bg)}
+.pt-back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.pt-form{margin-top:22px;max-width:780px;padding:clamp(18px,3vw,34px);background:var(--bg);border:1px solid var(--line);border-radius:22px;box-shadow:0 8px 28px rgba(10,20,48,.06)}
+.pt-form .f{display:block;font-size:.86rem;font-weight:600;margin:18px 0 6px}
+.pt-form .f small{font-weight:400;color:var(--muted)}
+.pt-form .f b{color:var(--accent)}
+.in{width:100%;padding:.78em 1em;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;font-size:1rem}
+textarea.in{resize:vertical;min-height:96px}
+.in-s{max-width:140px}
+.pt-form fieldset{border:0;margin:20px 0 0;padding:0;min-width:0}
+.pt-form legend{padding:0;margin-bottom:4px;font-size:.86rem;font-weight:600}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.opt{display:inline-flex;align-items:center;gap:8px;margin:6px 20px 6px 0;cursor:pointer;font-size:.95rem}
+.opt input{width:18px;height:18px;margin:0;accent-color:var(--accent)}
+.hint{margin-top:8px;font-size:.84rem;color:var(--muted);line-height:1.5}
+.pt-sec{display:flex;align-items:center;gap:16px;margin:38px 0 4px;font-family:var(--body);text-transform:none;font-weight:500;font-size:1.3rem;letter-spacing:0;line-height:1.2}
+.pt-sec::before,.pt-sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;font-size:.95rem}
+.sw input{appearance:none;-webkit-appearance:none;flex:none;position:relative;width:44px;height:25px;margin:0;border-radius:999px;background:var(--line);cursor:pointer;transition:background .2s}
+.sw input::after{content:"";position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .2s}
+.sw input:checked{background:var(--accent)}
+.sw input:checked::after{transform:translateX(19px)}
+.sw input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.odo-wrap{margin-top:24px}
+.odo-wrap .f{margin-top:0}
+.odo{overflow-x:auto;padding:12px 0 6px;margin-top:6px;border:1px solid var(--line);border-radius:14px;background:var(--bg-2)}
+.odo-in{min-width:600px;display:grid;gap:18px;padding:0 10px}
+.odo-row{display:flex;justify-content:center;gap:4px}
+.odo-row .tooth:nth-child(8){margin-right:12px}
+.tooth{display:flex;flex-direction:column;align-items:center;gap:3px;width:32px;padding:0;border:0;background:none;color:var(--muted);cursor:pointer}
+.odo-row.lo .tooth{flex-direction:column-reverse}
+.tooth i,.tooth-i{display:block;width:26px;height:36px;border-radius:9px 9px 13px 13px;background:var(--bg);border:2px solid var(--line);transition:background .15s,border-color .15s}
+.odo-row.lo .tooth i{border-radius:13px 13px 9px 9px}
+.tooth span{font-size:.68rem;font-weight:600}
+.tooth[data-st="absent"] i,.tooth-i.absent{background:repeating-linear-gradient(45deg,transparent 0 4px,var(--line) 4px 6px);border-style:dashed;border-color:var(--muted)}
+.tooth[data-st="implant"] i,.tooth-i.implant{background:var(--teal);border-color:var(--accent)}
+.tooth[data-st="fixed"] i,.tooth-i.fixed{background:var(--fg);border-color:var(--fg)}
+.tooth:focus-visible{outline:none}
+.tooth:focus-visible i{outline:3px solid var(--accent);outline-offset:2px}
+.odo-leg{display:flex;flex-wrap:wrap;gap:8px 20px;margin:12px 0 0;padding:0;list-style:none;font-size:.84rem;color:var(--muted)}
+.odo-leg li{display:flex;align-items:center;gap:8px}
+.odo-leg .tooth-i{width:14px;height:20px;border-radius:5px 5px 7px 7px;border-width:2px}
+
+.dz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:4px 18px}
+.dz-cap{margin-top:18px!important}
+.dz{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:150px;padding:18px;border:2px dashed color-mix(in srgb,var(--accent) 55%,transparent);border-radius:14px;background:color-mix(in srgb,var(--accent) 6%,var(--bg));color:var(--accent);text-align:center;cursor:pointer;transition:background .2s}
+.dz:hover{background:color-mix(in srgb,var(--accent) 12%,var(--bg))}
+.dz:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.dz input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
+.dz svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dz-t{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;line-height:1.35}
+.dz-n{font-size:.84rem;color:var(--fg);overflow-wrap:anywhere}
+.dz-wide{min-height:170px}
+.pt-form .btn{width:100%;margin-top:22px;padding:1.05em 1.4em;font-size:1rem}
+.pt-form .btn[disabled]{opacity:.6;cursor:progress}
+
+.ord-list{display:grid;gap:10px;margin-top:22px;max-width:780px}
+.ord-row{display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);border-radius:14px}
+.ord-row b{font-weight:600}
+.ord-row small{color:var(--muted);font-size:.84rem}
+.ord-pill{grid-row:1/3;grid-column:2;padding:5px 12px;border-radius:999px;background:var(--bg-2);color:var(--fg);font-size:.78rem;font-weight:600;white-space:nowrap}
+.ord-pill[data-s="done"]{background:#CFF2DC;color:#0B4F27}
+.ord-pill[data-s="shipped"]{background:#D6ECF7;color:#0B3F5C}
+.ord-pill[data-s="in_progress"]{background:#FFF1BF;color:#5C4400}
+.ord-pill[data-s="cancelled"]{background:#F8D9D6;color:#6E1A12}
+.ord-0{color:var(--muted);padding:10px 2px}
+
+.set-card,.done-card{margin-top:22px;max-width:560px;padding:clamp(18px,3vw,30px);background:var(--bg);border:1px solid var(--line);border-radius:22px}
+.set-dl{display:grid;gap:16px;margin:0}
+.set-dl dt{font-size:.8rem;font-weight:600;color:var(--muted)}
+.set-dl dd{margin:2px 0 0;font-size:1.02rem;overflow-wrap:anywhere}
+.set-act{display:grid;gap:12px;margin-top:22px}
+.set-act .btn{width:100%}
+.done-card{text-align:center;margin-inline:auto}
+.done-card .disc{margin:0 auto 14px}
+.done-card .pt-h{font-size:2.2rem}
+.done-card .pt-sub{margin:0 auto}
+.done-ref{margin-top:14px;font-weight:600;letter-spacing:.04em}
+@media (max-width:520px){.pt-brand span{display:none}.pt-top{gap:2px}}
 </style>
 </head>
 <body>
@@ -656,22 +806,285 @@ footer .f-info{display:grid;gap:2px}
   </div>
 </div>
 
-<!-- Register via WhatsApp (number is set in the portal script) -->
-<div class="gm gw" id="gw" hidden>
-  <button class="gm-x" id="gw-x" type="button" aria-label="Close">&times;</button>
-  <div class="gw-card" id="gw-card" role="dialog" aria-modal="true" aria-labelledby="gw-title" tabindex="-1">
-    <img class="gm-logo gw-logo" alt="Global Clear Aligners">
-    <h2 id="gw-title">Global Clear Aligners</h2>
-    <p class="sub" data-es="Escríbenos por WhatsApp para solicitar tu registro.">Message us on WhatsApp to request your registration.</p>
-    <a class="btn gw-open" id="gw-app" href="#" data-es="Abrir aplicación">Open app</a>
-    <a class="btn gw-web" id="gw-web" href="#" target="_blank" rel="noopener" data-es="Continuar en WhatsApp Web">Continue to WhatsApp Web</a>
-    <p class="gw-note" id="gw-note" hidden data-es="El número de WhatsApp estará disponible muy pronto.">The WhatsApp number will be available very soon.</p>
-    <p class="gw-dl">
-      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 5.2a6.8 6.8 0 0 0-5.9 10.2L5.2 18.8l3.5-.9A6.8 6.8 0 1 0 12 5.2z" fill="none" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.6 9.3c.2-.4.5-.4.7-.3.1.3.4 1 .4 1.1s0 .3-.2.5l-.3.4c.5 1 1.3 1.7 2.3 2.2l.5-.6c.1-.1.3-.2.5-.1l1.1.5c.2.1.2.3.2.4-.1.6-.7 1.1-1.3 1.1-2.4-.2-4.4-2-4.6-4.3 0-.4.3-.7.7-.9z" fill="#fff"/></svg>
-      <span data-es="¿No tienes la aplicación?">Don't have the app?</span>
-      <a href="https://www.whatsapp.com/download" target="_blank" rel="noopener" data-es="Descárgala ahora">Download now</a>
-    </p>
+<!-- Partner portal app: products, order form, orders, settings -->
+<div class="pt" id="pt" hidden>
+  <div class="pt-scrim" id="pt-scrim" hidden></div>
+
+  <aside class="pt-side" id="pt-side" aria-label="Menu">
+    <div class="pt-side-h">
+      <img class="gm-logo" alt="Global Clear Aligners">
+      <button class="pt-ib" id="pt-side-x" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <nav class="pt-nav-list">
+      <button class="pt-nav on" type="button" data-v="products"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9z M7 5.5H6a1 1 0 0 0-1 1V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6.5a1 1 0 0 0-1-1h-1"/></svg><span data-es="Productos">Products</span></button>
+      <button class="pt-nav" type="button" data-v="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11 M9 12h11 M9 18h11 M4.5 6h.01 M4.5 12h.01 M4.5 18h.01"/></svg><span data-es="Pedidos">Orders</span></button>
+      <button class="pt-nav" type="button" data-v="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-gear"/></svg><span data-es="Configuración">Settings</span></button>
+      <button class="pt-nav pt-nav-site" type="button" data-v="site"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l-6 6 6 6 M4 12h16"/></svg><span data-es="Volver al sitio">Back to the site</span></button>
+    </nav>
+  </aside>
+
+  <div class="pt-bar">
+    <header class="pt-top">
+      <button class="pt-ib" id="pt-menu" type="button" aria-expanded="false" aria-controls="pt-side"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16 M4 12h16 M4 17h16"/></svg></button>
+      <div class="pt-brand"><img class="gm-logo" alt=""><span>Global Clear Aligners</span></div>
+      <button class="pt-sw" id="pt-lang" type="button" role="switch" aria-checked="false" aria-label="Language / Idioma: English, Español"><span class="pt-sw-opt" data-l="en">EN</span><span class="pt-sw-opt" data-l="es">ES</span><span class="pt-sw-thumb"></span></button>
+      <button class="pt-ib" id="pt-bell" type="button" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z M10 20.5a2 2 0 0 0 4 0"/></svg></button>
+      <button class="pt-av" id="pt-av" type="button" aria-expanded="false"><span id="pt-ini">·</span><i class="dot"></i></button>
+
+      <div class="pt-pop" id="pt-bellpop" hidden></div>
+      <div class="pt-pop pt-pop-acc" id="pt-avpop" hidden>
+        <p class="pt-pop-n" id="pt-av-n"></p>
+        <p class="pt-pop-e" id="pt-av-e"></p>
+        <button class="pt-pop-b" type="button" data-v="settings" data-es="Configuración">Settings</button>
+        <button class="pt-pop-b" type="button" id="pt-av-out" data-es="Cerrar sesión">Sign out</button>
+      </div>
+    </header>
   </div>
+
+  <main class="pt-main" id="pt-main" tabindex="-1">
+    <div class="pt-wrap">
+
+      <!-- Products -->
+      <section id="v-products" class="pt-view">
+        <p class="eyebrow" data-es="Portal de socios">Partner portal</p>
+        <h1 class="pt-h" id="pt-hi"></h1>
+        <p class="pt-sub" data-es="¿Qué necesitas hoy? Elige una opción para comenzar tu pedido.">What do you need today? Choose an option to start your order.</p>
+        <div class="pt-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+          <input id="pt-q" type="search" autocomplete="off" data-ph-en="Search product" data-ph-es="Buscar producto">
+        </div>
+        <div class="pt-grid" id="pt-grid">
+          <article class="pt-card" data-svc="aligners" data-s="alineadores aligners ordenar order">
+            <div class="pt-media"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><g transform="translate(48.0 94.0) rotate(12.0)"><path d="M-8.2,-11.8 Q-8.2,-16.8 -2.2,-16.8 H2.2 Q8.2,-16.8 8.2,-11.8 V9.4 Q8.2,16.8 0,16.8 Q-8.2,16.8 -8.2,9.4 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(72.9 103.5) rotate(9.3)"><path d="M-9.4,-13.4 Q-9.4,-18.4 -3.4,-18.4 H3.4 Q9.4,-18.4 9.4,-13.4 V10.0 Q9.4,18.4 0,18.4 Q-9.4,18.4 -9.4,10.0 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(97.8 110.6) rotate(6.7)"><path d="M-10.4,-15.0 Q-10.4,-20.0 -4.4,-20.0 H4.4 Q10.4,-20.0 10.4,-15.0 V10.6 Q10.4,20.0 0,20.0 Q-10.4,20.0 -10.4,10.6 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(122.7 115.3) rotate(4.0)"><path d="M-11.4,-16.6 Q-11.4,-21.6 -5.4,-21.6 H5.4 Q11.4,-21.6 11.4,-16.6 V11.4 Q11.4,21.6 0,21.6 Q-11.4,21.6 -11.4,11.4 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(147.6 117.7) rotate(1.3)"><path d="M-12.2,-18.2 Q-12.2,-23.2 -6.2,-23.2 H6.2 Q12.2,-23.2 12.2,-18.2 V12.2 Q12.2,23.2 0,23.2 Q-12.2,23.2 -12.2,12.2 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(172.4 117.7) rotate(-1.3)"><path d="M-12.2,-18.2 Q-12.2,-23.2 -6.2,-23.2 H6.2 Q12.2,-23.2 12.2,-18.2 V12.2 Q12.2,23.2 0,23.2 Q-12.2,23.2 -12.2,12.2 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(197.3 115.3) rotate(-4.0)"><path d="M-11.4,-16.6 Q-11.4,-21.6 -5.4,-21.6 H5.4 Q11.4,-21.6 11.4,-16.6 V11.4 Q11.4,21.6 0,21.6 Q-11.4,21.6 -11.4,11.4 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(222.2 110.6) rotate(-6.7)"><path d="M-10.4,-15.0 Q-10.4,-20.0 -4.4,-20.0 H4.4 Q10.4,-20.0 10.4,-15.0 V10.6 Q10.4,20.0 0,20.0 Q-10.4,20.0 -10.4,10.6 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(247.1 103.5) rotate(-9.3)"><path d="M-9.4,-13.4 Q-9.4,-18.4 -3.4,-18.4 H3.4 Q9.4,-18.4 9.4,-13.4 V10.0 Q9.4,18.4 0,18.4 Q-9.4,18.4 -9.4,10.0 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(272.0 94.0) rotate(-12.0)"><path d="M-8.2,-11.8 Q-8.2,-16.8 -2.2,-16.8 H2.2 Q8.2,-16.8 8.2,-11.8 V9.4 Q8.2,16.8 0,16.8 Q-8.2,16.8 -8.2,9.4 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(48.0 94.0) rotate(12.0)"><path d="M-9.4,-14.2 Q-9.4,-19.2 -3.4,-19.2 H3.4 Q9.4,-19.2 9.4,-14.2 V10.7 Q9.4,19.2 0,19.2 Q-9.4,19.2 -9.4,10.7 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(72.9 103.5) rotate(9.3)"><path d="M-10.7,-16.0 Q-10.7,-21.0 -4.7,-21.0 H4.7 Q10.7,-21.0 10.7,-16.0 V11.4 Q10.7,21.0 0,21.0 Q-10.7,21.0 -10.7,11.4 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(97.8 110.6) rotate(6.7)"><path d="M-11.9,-17.8 Q-11.9,-22.8 -5.9,-22.8 H5.9 Q11.9,-22.8 11.9,-17.8 V12.1 Q11.9,22.8 0,22.8 Q-11.9,22.8 -11.9,12.1 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(122.7 115.3) rotate(4.0)"><path d="M-13.0,-19.6 Q-13.0,-24.6 -7.0,-24.6 H7.0 Q13.0,-24.6 13.0,-19.6 V13.0 Q13.0,24.6 0,24.6 Q-13.0,24.6 -13.0,13.0 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(147.6 117.7) rotate(1.3)"><path d="M-13.9,-21.4 Q-13.9,-26.4 -7.9,-26.4 H7.9 Q13.9,-26.4 13.9,-21.4 V13.9 Q13.9,26.4 0,26.4 Q-13.9,26.4 -13.9,13.9 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(172.4 117.7) rotate(-1.3)"><path d="M-13.9,-21.4 Q-13.9,-26.4 -7.9,-26.4 H7.9 Q13.9,-26.4 13.9,-21.4 V13.9 Q13.9,26.4 0,26.4 Q-13.9,26.4 -13.9,13.9 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(197.3 115.3) rotate(-4.0)"><path d="M-13.0,-19.6 Q-13.0,-24.6 -7.0,-24.6 H7.0 Q13.0,-24.6 13.0,-19.6 V13.0 Q13.0,24.6 0,24.6 Q-13.0,24.6 -13.0,13.0 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(222.2 110.6) rotate(-6.7)"><path d="M-11.9,-17.8 Q-11.9,-22.8 -5.9,-22.8 H5.9 Q11.9,-22.8 11.9,-17.8 V12.1 Q11.9,22.8 0,22.8 Q-11.9,22.8 -11.9,12.1 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(247.1 103.5) rotate(-9.3)"><path d="M-10.7,-16.0 Q-10.7,-21.0 -4.7,-21.0 H4.7 Q10.7,-21.0 10.7,-16.0 V11.4 Q10.7,21.0 0,21.0 Q-10.7,21.0 -10.7,11.4 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(272.0 94.0) rotate(-12.0)"><path d="M-9.4,-14.2 Q-9.4,-19.2 -3.4,-19.2 H3.4 Q9.4,-19.2 9.4,-14.2 V10.7 Q9.4,19.2 0,19.2 Q-9.4,19.2 -9.4,10.7 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2.2" stroke-linejoin="round"/></g><path d="M96 166 Q160 190 224 166" fill="none" stroke="#3BB6C4" stroke-width="2.2" stroke-linecap="round" opacity=".55"/></svg></div>
+            <div class="pt-body">
+              <h3 data-es="Ordenar alineadores">Order aligners</h3>
+              <p data-es="Envía el caso y tus archivos de escaneo, y recibe alineadores impresos en 3D listos para tu paciente.">Send the case and your scan files, and receive 3D-printed aligners ready for your patient.</p>
+            </div>
+            <button class="btn pt-pedir" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9z M7 5.5H6a1 1 0 0 0-1 1V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6.5a1 1 0 0 0-1-1h-1"/></svg><span data-es="Pedir">Order</span></button>
+          </article>
+          <article class="pt-card" data-svc="refinement" data-s="refinamientos refinements ajustes">
+            <div class="pt-media"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><g transform="translate(60.0 47.0) rotate(3.0)"><path d="M-5.6,-6.2 Q-5.6,-11.2 0.4,-11.2 H-0.4 Q5.6,-11.2 5.6,-6.2 V6.2 Q5.6,11.2 0,11.2 Q-5.6,11.2 -5.6,6.2 Z" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/></g><g transform="translate(89.5 43.5) rotate(19.0)"><path d="M-6.5,-7.4 Q-6.5,-12.4 -0.5,-12.4 H0.5 Q6.5,-12.4 6.5,-7.4 V6.6 Q6.5,12.4 0,12.4 Q-6.5,12.4 -6.5,6.6 Z" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/></g><g transform="translate(108.0 52.0) rotate(-1.0)"><path d="M-7.2,-8.6 Q-7.2,-13.6 -1.2,-13.6 H1.2 Q7.2,-13.6 7.2,-8.6 V7.1 Q7.2,13.6 0,13.6 Q-7.2,13.6 -7.2,7.1 Z" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/></g><g transform="translate(137.5 56.5) rotate(14.0)"><path d="M-8.0,-9.8 Q-8.0,-14.8 -2.0,-14.8 H2.0 Q8.0,-14.8 8.0,-9.8 V7.6 Q8.0,14.8 0,14.8 Q-8.0,14.8 -8.0,7.6 Z" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/></g><g transform="translate(160.0 49.0) rotate(-6.0)"><path d="M-8.5,-11.0 Q-8.5,-16.0 -2.5,-16.0 H2.5 Q8.5,-16.0 8.5,-11.0 V8.3 Q8.5,16.0 0,16.0 Q-8.5,16.0 -8.5,8.3 Z" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/></g><g transform="translate(182.5 55.5) rotate(6.0)"><path d="M-8.0,-9.8 Q-8.0,-14.8 -2.0,-14.8 H2.0 Q8.0,-14.8 8.0,-9.8 V7.6 Q8.0,14.8 0,14.8 Q-8.0,14.8 -8.0,7.6 Z" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/></g><g transform="translate(212.0 48.0) rotate(-16.0)"><path d="M-7.2,-8.6 Q-7.2,-13.6 -1.2,-13.6 H1.2 Q7.2,-13.6 7.2,-8.6 V7.1 Q7.2,13.6 0,13.6 Q-7.2,13.6 -7.2,7.1 Z" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/></g><g transform="translate(230.5 50.5) rotate(-1.0)"><path d="M-6.5,-7.4 Q-6.5,-12.4 -0.5,-12.4 H0.5 Q6.5,-12.4 6.5,-7.4 V6.6 Q6.5,12.4 0,12.4 Q-6.5,12.4 -6.5,6.6 Z" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/></g><g transform="translate(260.0 40.0) rotate(-19.0)"><path d="M-5.6,-6.2 Q-5.6,-11.2 0.4,-11.2 H-0.4 Q5.6,-11.2 5.6,-6.2 V6.2 Q5.6,11.2 0,11.2 Q-5.6,11.2 -5.6,6.2 Z" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/></g><path d="M160 86 V114 M149 104 L160 115 L171 104" fill="none" stroke="#3BB6C4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(62.0 148.0) rotate(12.0)"><path d="M-5.6,-6.2 Q-5.6,-11.2 0.4,-11.2 H-0.4 Q5.6,-11.2 5.6,-6.2 V6.2 Q5.6,11.2 0,11.2 Q-5.6,11.2 -5.6,6.2 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(86.5 151.5) rotate(9.0)"><path d="M-6.5,-7.4 Q-6.5,-12.4 -0.5,-12.4 H0.5 Q6.5,-12.4 6.5,-7.4 V6.6 Q6.5,12.4 0,12.4 Q-6.5,12.4 -6.5,6.6 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(111.0 154.0) rotate(6.0)"><path d="M-7.2,-8.6 Q-7.2,-13.6 -1.2,-13.6 H1.2 Q7.2,-13.6 7.2,-8.6 V7.1 Q7.2,13.6 0,13.6 Q-7.2,13.6 -7.2,7.1 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(135.5 155.5) rotate(3.0)"><path d="M-8.0,-9.8 Q-8.0,-14.8 -2.0,-14.8 H2.0 Q8.0,-14.8 8.0,-9.8 V7.6 Q8.0,14.8 0,14.8 Q-8.0,14.8 -8.0,7.6 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(160.0 156.0) rotate(-0.0)"><path d="M-8.5,-11.0 Q-8.5,-16.0 -2.5,-16.0 H2.5 Q8.5,-16.0 8.5,-11.0 V8.3 Q8.5,16.0 0,16.0 Q-8.5,16.0 -8.5,8.3 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(184.5 155.5) rotate(-3.0)"><path d="M-8.0,-9.8 Q-8.0,-14.8 -2.0,-14.8 H2.0 Q8.0,-14.8 8.0,-9.8 V7.6 Q8.0,14.8 0,14.8 Q-8.0,14.8 -8.0,7.6 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(209.0 154.0) rotate(-6.0)"><path d="M-7.2,-8.6 Q-7.2,-13.6 -1.2,-13.6 H1.2 Q7.2,-13.6 7.2,-8.6 V7.1 Q7.2,13.6 0,13.6 Q-7.2,13.6 -7.2,7.1 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(233.5 151.5) rotate(-9.0)"><path d="M-6.5,-7.4 Q-6.5,-12.4 -0.5,-12.4 H0.5 Q6.5,-12.4 6.5,-7.4 V6.6 Q6.5,12.4 0,12.4 Q-6.5,12.4 -6.5,6.6 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(258.0 148.0) rotate(-12.0)"><path d="M-5.6,-6.2 Q-5.6,-11.2 0.4,-11.2 H-0.4 Q5.6,-11.2 5.6,-6.2 V6.2 Q5.6,11.2 0,11.2 Q-5.6,11.2 -5.6,6.2 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g></svg></div>
+            <div class="pt-body">
+              <h3 data-es="Refinamientos">Refinements</h3>
+              <p data-es="Nuevos alineadores para afinar el resultado de un caso que ya está en tratamiento.">New aligners to fine-tune the result of a case already in treatment.</p>
+            </div>
+            <button class="btn pt-pedir" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9z M7 5.5H6a1 1 0 0 0-1 1V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6.5a1 1 0 0 0-1-1h-1"/></svg><span data-es="Pedir">Order</span></button>
+          </article>
+          <article class="pt-card" data-svc="models" data-s="modelos impresion models printing 3d">
+            <div class="pt-media"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect x="44" y="124" width="232" height="50" rx="12" fill="var(--bg)" stroke="var(--line)" stroke-width="2"/><path d="M58 138 H262" stroke="#3BB6C4" stroke-width="1.5" opacity=".5"/><path d="M58 144 H262" stroke="#3BB6C4" stroke-width="1.5" opacity=".5"/><path d="M58 150 H262" stroke="#3BB6C4" stroke-width="1.5" opacity=".5"/><path d="M58 156 H262" stroke="#3BB6C4" stroke-width="1.5" opacity=".5"/><path d="M58 162 H262" stroke="#3BB6C4" stroke-width="1.5" opacity=".5"/><path d="M58 168 H262" stroke="#3BB6C4" stroke-width="1.5" opacity=".5"/><g transform="translate(56.0 107.9) rotate(0.0)"><path d="M-7.6,-11.1 Q-7.6,-16.1 -1.6,-16.1 H1.6 Q7.6,-16.1 7.6,-11.1 V9.3 Q7.6,16.1 0,16.1 Q-7.6,16.1 -7.6,9.3 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(79.1 106.4) rotate(0.0)"><path d="M-8.6,-12.6 Q-8.6,-17.6 -2.6,-17.6 H2.6 Q8.6,-17.6 8.6,-12.6 V9.9 Q8.6,17.6 0,17.6 Q-8.6,17.6 -8.6,9.9 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(102.2 104.8) rotate(0.0)"><path d="M-9.6,-14.2 Q-9.6,-19.2 -3.6,-19.2 H3.6 Q9.6,-19.2 9.6,-14.2 V10.6 Q9.6,19.2 0,19.2 Q-9.6,19.2 -9.6,10.6 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(125.3 103.3) rotate(0.0)"><path d="M-10.5,-15.7 Q-10.5,-20.7 -4.5,-20.7 H4.5 Q10.5,-20.7 10.5,-15.7 V11.3 Q10.5,20.7 0,20.7 Q-10.5,20.7 -10.5,11.3 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(148.4 101.8) rotate(0.0)"><path d="M-11.2,-17.2 Q-11.2,-22.2 -5.2,-22.2 H5.2 Q11.2,-22.2 11.2,-17.2 V12.1 Q11.2,22.2 0,22.2 Q-11.2,22.2 -11.2,12.1 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(171.6 101.8) rotate(0.0)"><path d="M-11.2,-17.2 Q-11.2,-22.2 -5.2,-22.2 H5.2 Q11.2,-22.2 11.2,-17.2 V12.1 Q11.2,22.2 0,22.2 Q-11.2,22.2 -11.2,12.1 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(194.7 103.3) rotate(0.0)"><path d="M-10.5,-15.7 Q-10.5,-20.7 -4.5,-20.7 H4.5 Q10.5,-20.7 10.5,-15.7 V11.3 Q10.5,20.7 0,20.7 Q-10.5,20.7 -10.5,11.3 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(217.8 104.8) rotate(0.0)"><path d="M-9.6,-14.2 Q-9.6,-19.2 -3.6,-19.2 H3.6 Q9.6,-19.2 9.6,-14.2 V10.6 Q9.6,19.2 0,19.2 Q-9.6,19.2 -9.6,10.6 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(240.9 106.4) rotate(0.0)"><path d="M-8.6,-12.6 Q-8.6,-17.6 -2.6,-17.6 H2.6 Q8.6,-17.6 8.6,-12.6 V9.9 Q8.6,17.6 0,17.6 Q-8.6,17.6 -8.6,9.9 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><g transform="translate(264.0 107.9) rotate(0.0)"><path d="M-7.6,-11.1 Q-7.6,-16.1 -1.6,-16.1 H1.6 Q7.6,-16.1 7.6,-11.1 V9.3 Q7.6,16.1 0,16.1 Q-7.6,16.1 -7.6,9.3 Z" fill="#3BB6C4" fill-opacity=".16" stroke="#3BB6C4" stroke-width="2" stroke-linejoin="round"/></g><path d="M30 182 H290" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg></div>
+            <div class="pt-body">
+              <h3 data-es="Impresión de modelos">3D model printing</h3>
+              <p data-es="Modelos dentales impresos en 3D con precisión a partir de tu escaneo intraoral.">Precisely 3D-printed dental models made from your intraoral scan.</p>
+            </div>
+            <button class="btn pt-pedir" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9z M7 5.5H6a1 1 0 0 0-1 1V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6.5a1 1 0 0 0-1-1h-1"/></svg><span data-es="Pedir">Order</span></button>
+          </article>
+          <article class="pt-card" data-svc="guards" data-s="guardas nocturnos retenedores night guards retainers">
+            <div class="pt-media"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect x="52" y="30" width="216" height="46" rx="16" fill="var(--bg)" stroke="var(--line)" stroke-width="2.5"/><rect x="52" y="92" width="216" height="80" rx="20" fill="var(--bg)" stroke="var(--line)" stroke-width="2.5"/><path d="M66 82 H254" stroke="var(--muted)" stroke-width="3" stroke-linecap="round" opacity=".5"/><path d="M88 150 Q160 84 232 150" fill="none" stroke="#3BB6C4" stroke-width="16" stroke-linecap="round" opacity=".45"/><path d="M88 150 Q160 84 232 150" fill="none" stroke="#3BB6C4" stroke-width="3" stroke-linecap="round"/><circle cx="160" cy="56" r="5" fill="var(--muted)" opacity=".6"/></svg></div>
+            <div class="pt-body">
+              <h3 data-es="Guardas nocturnos y retenedores">Night guards and retainers</h3>
+              <p data-es="Guardas y retenedores hechos a medida para proteger y mantener la sonrisa de tu paciente.">Custom-made guards and retainers to protect and maintain your patient's smile.</p>
+            </div>
+            <button class="btn pt-pedir" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9z M7 5.5H6a1 1 0 0 0-1 1V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6.5a1 1 0 0 0-1-1h-1"/></svg><span data-es="Pedir">Order</span></button>
+          </article>
+        </div>
+        <p class="pt-empty" id="pt-empty" hidden data-es="No se encontraron productos.">No products found.</p>
+      </section>
+
+      <!-- Order form -->
+      <section id="v-order" class="pt-view" hidden>
+        <button class="pt-back" id="ord-back" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span data-es="Volver a productos">Back to products</span></button>
+        <h1 class="pt-h" id="ord-title"></h1>
+        <p class="pt-sub"><span data-es="Completa los datos del caso. Los campos con * son obligatorios.">Fill in the case details. Fields marked * are required.</span></p>
+
+        <form class="pt-form" id="f-order" novalidate>
+          <!-- Common -->
+          <label class="f" for="o-patient"><span data-es="Paciente">Patient</span> <b aria-hidden="true">*</b></label>
+          <input class="in" id="o-patient" name="patient" type="text" maxlength="160" autocomplete="off">
+          <label class="f" for="o-doctor"><span data-es="Doctor/a">Doctor</span> <b aria-hidden="true">*</b></label>
+          <input class="in" id="o-doctor" name="doctor" type="text" maxlength="160" autocomplete="name">
+          <label class="f" for="o-address"><span data-es="Dirección o centro de entrega">Delivery address or center</span> <b aria-hidden="true">*</b></label>
+          <input class="in" id="o-address" name="address" type="text" maxlength="240" autocomplete="street-address">
+          <label class="f" for="o-date"><span data-es="Fecha de entrega deseada">Desired delivery date</span> <small data-es="(opcional)">(optional)</small></label>
+          <input class="in" id="o-date" name="date" type="date">
+
+          <fieldset>
+            <legend data-es="Arcadas">Arches</legend>
+            <label class="opt"><input type="radio" name="arch" value="both" checked><span data-es="Ambas">Both</span></label>
+            <label class="opt"><input type="radio" name="arch" value="upper"><span data-es="Superior">Upper</span></label>
+            <label class="opt"><input type="radio" name="arch" value="lower"><span data-es="Inferior">Lower</span></label>
+          </fieldset>
+
+          <!-- Aligners -->
+          <div data-svc="aligners">
+            <h2 class="pt-sec"><span data-es="Detalles del caso">Case details</span></h2>
+            <fieldset>
+              <legend data-es="Motivo del tratamiento">Treatment goals</legend>
+              <label class="opt"><input type="checkbox" name="goal" value="crowding"><span data-es="Apiñamiento">Crowding</span></label>
+              <label class="opt"><input type="checkbox" name="goal" value="spacing"><span data-es="Espaciamiento">Spacing</span></label>
+              <label class="opt"><input type="checkbox" name="goal" value="rotations"><span data-es="Rotaciones leves a moderadas">Mild to moderate rotations</span></label>
+              <label class="opt"><input type="checkbox" name="goal" value="deep"><span data-es="Mordida profunda">Deep bite</span></label>
+              <label class="opt"><input type="checkbox" name="goal" value="open"><span data-es="Mordida abierta">Open bite</span></label>
+              <label class="opt"><input type="checkbox" name="goal" value="cross"><span data-es="Mordida cruzada">Crossbite</span></label>
+            </fieldset>
+
+            <div class="odo-wrap">
+              <p class="f" id="odo-t" data-es="Odontograma">Tooth chart</p>
+              <p class="hint" data-es="Toca un diente para marcarlo: ausente, implante o no mover.">Tap a tooth to mark it: missing, implant or do not move.</p>
+              <div class="odo" role="group" aria-labelledby="odo-t"><div class="odo-in" id="odo"></div></div>
+              <ul class="odo-leg" aria-hidden="true">
+                <li><i class="tooth-i"></i><span data-es="Normal">Normal</span></li>
+                <li><i class="tooth-i absent"></i><span data-es="Ausente">Missing</span></li>
+                <li><i class="tooth-i implant"></i><span data-es="Implante">Implant</span></li>
+                <li><i class="tooth-i fixed"></i><span data-es="No mover">Do not move</span></li>
+              </ul>
+            </div>
+
+            <h2 class="pt-sec"><span data-es="Historia clínica relevante">Relevant clinical history</span></h2>
+            <fieldset class="plain">
+              <legend class="vh" data-es="Historia clínica relevante">Relevant clinical history</legend>
+              <label class="sw"><span data-es="¿Tratamiento ortodóntico previo?">Previous orthodontic treatment?</span><input type="checkbox" name="hx" value="prev"></label>
+              <label class="sw"><span data-es="¿Enfermedad periodontal?">Periodontal disease?</span><input type="checkbox" name="hx" value="perio"></label>
+              <label class="sw"><span data-es="¿Bruxismo?">Bruxism?</span><input type="checkbox" name="hx" value="brux"></label>
+              <label class="sw"><span data-es="¿ATM / dolor articular?">TMJ / joint pain?</span><input type="checkbox" name="hx" value="tmj"></label>
+              <label class="sw"><span data-es="¿Pérdida dental previa?">Previous tooth loss?</span><input type="checkbox" name="hx" value="loss"></label>
+              <label class="sw"><span data-es="¿Restauraciones extensas?">Extensive restorations?</span><input type="checkbox" name="hx" value="resto"></label>
+              <label class="sw"><span data-es="¿Implantes?">Implants?</span><input type="checkbox" name="hx" value="impl"></label>
+              <label class="sw"><span data-es="¿Movilidad dental?">Tooth mobility?</span><input type="checkbox" name="hx" value="mob"></label>
+            </fieldset>
+            <fieldset>
+              <legend data-es="Relación esquelética">Skeletal relationship</legend>
+              <label class="opt"><input type="radio" name="skel" value="1"><span data-es="Clase I">Class I</span></label>
+              <label class="opt"><input type="radio" name="skel" value="2"><span data-es="Clase II">Class II</span></label>
+              <label class="opt"><input type="radio" name="skel" value="3"><span data-es="Clase III">Class III</span></label>
+            </fieldset>
+
+            <h2 class="pt-sec"><span data-es="Relación dental">Dental relationship</span></h2>
+            <fieldset>
+              <legend data-es="Relación molar derecha">Right molar relationship</legend>
+              <label class="opt"><input type="radio" name="molar_r" value="1"><span data-es="Clase I">Class I</span></label>
+              <label class="opt"><input type="radio" name="molar_r" value="2"><span data-es="Clase II">Class II</span></label>
+              <label class="opt"><input type="radio" name="molar_r" value="3"><span data-es="Clase III">Class III</span></label>
+            </fieldset>
+            <fieldset>
+              <legend data-es="Relación molar izquierda">Left molar relationship</legend>
+              <label class="opt"><input type="radio" name="molar_l" value="1"><span data-es="Clase I">Class I</span></label>
+              <label class="opt"><input type="radio" name="molar_l" value="2"><span data-es="Clase II">Class II</span></label>
+              <label class="opt"><input type="radio" name="molar_l" value="3"><span data-es="Clase III">Class III</span></label>
+            </fieldset>
+
+            <h2 class="pt-sec"><span data-es="Preferencias de tratamiento">Treatment preferences</span></h2>
+            <fieldset>
+              <legend data-es="¿Attachments?">Attachments?</legend>
+              <label class="opt"><input type="radio" name="attach" value="yes"><span data-es="Sí">Yes</span></label>
+              <label class="opt"><input type="radio" name="attach" value="no"><span data-es="No">No</span></label>
+              <label class="opt"><input type="radio" name="attach" value="tech"><span data-es="Según criterio técnico">Per technical criteria</span></label>
+            </fieldset>
+            <fieldset>
+              <legend data-es="¿Elásticos intermaxilares?">Intermaxillary elastics?</legend>
+              <label class="opt"><input type="radio" name="elastics" value="yes"><span data-es="Sí">Yes</span></label>
+              <label class="opt"><input type="radio" name="elastics" value="no"><span data-es="No">No</span></label>
+              <label class="opt"><input type="radio" name="elastics" value="eval"><span data-es="Evaluar">Evaluate</span></label>
+            </fieldset>
+            <fieldset>
+              <legend data-es="¿Uso de mini tornillos?">Use of mini screws?</legend>
+              <label class="opt"><input type="radio" name="screws" value="yes"><span data-es="Sí">Yes</span></label>
+              <label class="opt"><input type="radio" name="screws" value="no"><span data-es="No">No</span></label>
+              <label class="opt"><input type="radio" name="screws" value="eval"><span data-es="Evaluar">Evaluate</span></label>
+            </fieldset>
+          </div>
+
+          <!-- Refinements -->
+          <div data-svc="refinement">
+            <h2 class="pt-sec"><span data-es="Detalles del refinamiento">Refinement details</span></h2>
+            <label class="f" for="o-prev"><span data-es="Caso anterior">Previous case</span> <small data-es="(nombre del paciente o número de caso)">(patient name or case number)</small></label>
+            <input class="in" id="o-prev" name="prevcase" type="text" maxlength="160">
+            <label class="f" for="o-refine"><span data-es="¿Qué necesitas refinar?">What do you need to refine?</span></label>
+            <textarea class="in" id="o-refine" name="refine" rows="4" maxlength="2000"></textarea>
+          </div>
+
+          <!-- Models -->
+          <div data-svc="models">
+            <h2 class="pt-sec"><span data-es="Detalles de los modelos">Model details</span></h2>
+            <label class="f" for="o-qty"><span data-es="Cantidad de juegos de modelos">Number of model sets</span></label>
+            <input class="in in-s" id="o-qty" name="qty" type="number" min="1" max="99" value="1" inputmode="numeric">
+          </div>
+
+          <!-- Guards -->
+          <div data-svc="guards">
+            <h2 class="pt-sec"><span data-es="Detalles del producto">Product details</span></h2>
+            <fieldset>
+              <legend data-es="Tipo de producto">Product type</legend>
+              <label class="opt"><input type="radio" name="gtype" value="guard"><span data-es="Guarda nocturna">Night guard</span></label>
+              <label class="opt"><input type="radio" name="gtype" value="retainer"><span data-es="Retenedor">Retainer</span></label>
+            </fieldset>
+          </div>
+
+          <!-- Photos -->
+          <div data-svc="aligners refinement">
+            <h2 class="pt-sec"><span data-es="Fotos de los dientes">Photos of the teeth</span></h2>
+            <div class="dz-grid">
+              <div><p class="f dz-cap" id="cap-right" data-es="Lado derecho">Right side</p><label class="dz"><input type="file" name="f_right" accept="image/*" aria-labelledby="cap-right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11 M7.5 10.5 12 15l4.5-4.5 M5 19h14"/></svg><span class="dz-t" data-es="Haz clic o suelta el archivo aquí">Click or drop the file here</span><span class="dz-n"></span></label></div>
+              <div><p class="f dz-cap" id="cap-front" data-es="Frente">Front</p><label class="dz"><input type="file" name="f_front" accept="image/*" aria-labelledby="cap-front"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11 M7.5 10.5 12 15l4.5-4.5 M5 19h14"/></svg><span class="dz-t" data-es="Haz clic o suelta el archivo aquí">Click or drop the file here</span><span class="dz-n"></span></label></div>
+              <div><p class="f dz-cap" id="cap-left" data-es="Lado izquierdo">Left side</p><label class="dz"><input type="file" name="f_left" accept="image/*" aria-labelledby="cap-left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11 M7.5 10.5 12 15l4.5-4.5 M5 19h14"/></svg><span class="dz-t" data-es="Haz clic o suelta el archivo aquí">Click or drop the file here</span><span class="dz-n"></span></label></div>
+              <div><p class="f dz-cap" id="cap-upper" data-es="Lado superior">Upper</p><label class="dz"><input type="file" name="f_upper" accept="image/*" aria-labelledby="cap-upper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11 M7.5 10.5 12 15l4.5-4.5 M5 19h14"/></svg><span class="dz-t" data-es="Haz clic o suelta el archivo aquí">Click or drop the file here</span><span class="dz-n"></span></label></div>
+              <div><p class="f dz-cap" id="cap-lower" data-es="Lado inferior">Lower</p><label class="dz"><input type="file" name="f_lower" accept="image/*" aria-labelledby="cap-lower"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11 M7.5 10.5 12 15l4.5-4.5 M5 19h14"/></svg><span class="dz-t" data-es="Haz clic o suelta el archivo aquí">Click or drop the file here</span><span class="dz-n"></span></label></div>
+              <div data-svc="aligners"><p class="f dz-cap" id="cap-pano" data-es="Ortopantomografía">Panoramic X-ray</p><label class="dz"><input type="file" name="f_pano" accept="image/*,.pdf" aria-labelledby="cap-pano"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11 M7.5 10.5 12 15l4.5-4.5 M5 19h14"/></svg><span class="dz-t" data-es="Haz clic o suelta el archivo aquí">Click or drop the file here</span><span class="dz-n"></span></label></div>
+            </div>
+          </div>
+
+          <!-- Files -->
+          <h2 class="pt-sec"><span data-es="Archivos">Files</span></h2>
+          <p class="f dz-cap" id="cap-files" data-es="Escaneos y otros archivos">Scans and other files</p>
+          <label class="dz dz-wide"><input type="file" name="f_extra" multiple accept=".stl,.ply,.obj,.zip,.pdf,image/*,video/*" aria-labelledby="cap-files"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11 M7.5 10.5 12 15l4.5-4.5 M5 19h14"/></svg><span class="dz-t" data-es="Haz clic o suelta los archivos aquí para cargarlos">Click or drop the files here to upload them</span><span class="dz-n"></span></label>
+          <p class="hint" data-es="Puedes subir un ZIP o varios archivos sueltos: .stl, .ply, .obj, .zip, .pdf, imágenes y videos. Máximo 50 MB por archivo.">You can upload a ZIP or several loose files: .stl, .ply, .obj, .zip, .pdf, images and videos. Maximum 50 MB per file.</p>
+
+          <label class="f" for="o-notes"><span data-es="Instrucciones adicionales">Additional instructions</span> <small data-es="(opcional)">(optional)</small></label>
+          <textarea class="in" id="o-notes" name="notes" rows="4" maxlength="3000"></textarea>
+
+          <p class="gm-msg" id="ord-msg" role="alert" aria-live="polite"></p>
+          <button class="btn btn-primary" id="ord-send" type="submit" data-es="Enviar pedido">Send order</button>
+        </form>
+      </section>
+
+      <!-- Orders list -->
+      <section id="v-orders" class="pt-view" hidden>
+        <h1 class="pt-h" data-es="Pedidos">Orders</h1>
+        <p class="pt-sub" data-es="Tus pedidos recientes y su estado.">Your recent orders and their status.</p>
+        <div id="ord-list" class="ord-list" aria-live="polite"></div>
+      </section>
+
+      <!-- Settings -->
+      <section id="v-settings" class="pt-view" hidden>
+        <h1 class="pt-h" data-es="Configuración">Settings</h1>
+        <div class="set-card">
+          <dl class="set-dl">
+            <div><dt data-es="Nombre">Name</dt><dd id="set-n"></dd></div>
+            <div><dt data-es="Clínica o consultorio">Clinic or practice</dt><dd id="set-c"></dd></div>
+            <div><dt data-es="Correo electrónico">Email</dt><dd id="set-e"></dd></div>
+          </dl>
+          <p class="gm-msg" id="set-msg" role="status" aria-live="polite"></p>
+          <div class="set-act">
+            <button class="btn btn-ghost" id="set-pw" type="button" data-es="Cambiar contraseña">Change password</button>
+            <button class="btn btn-primary" id="set-out" type="button" data-es="Cerrar sesión">Sign out</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Done -->
+      <section id="v-done" class="pt-view" hidden>
+        <div class="done-card">
+          <span class="disc"><svg class="ico"><use href="#i-shield"/></svg></span>
+          <h1 class="pt-h" data-es="Pedido enviado">Order sent</h1>
+          <p class="pt-sub" data-es="Recibimos tu pedido y te enviamos una confirmación por correo. Te contactaremos con precios y tiempos de entrega.">We received your order and sent you a confirmation email. We will contact you with pricing and turnaround time.</p>
+          <p class="done-ref" id="done-ref"></p>
+          <div class="set-act">
+            <button class="btn btn-primary" id="done-orders" type="button" data-es="Ver mis pedidos">View my orders</button>
+            <button class="btn btn-ghost" id="done-more" type="button" data-es="Hacer otro pedido">Place another order</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -847,13 +1260,12 @@ footer .f-info{display:grid;gap:2px}
 <script>
 (function () {
   /* ---- Configuración (ver REGISTRO-SETUP.md) ---- */
-  var SUPABASE_URL = 'PEGA_AQUI_LA_URL_DE_TU_PROYECTO';
-  var SUPABASE_ANON_KEY = 'PEGA_AQUI_TU_ANON_KEY';
+  var SUPABASE_URL = 'https://pbfzptluwhrzngxnnqsx.supabase.co';
+  var SUPABASE_ANON_KEY = 'sb_publishable_5V5qN9gKxBTJcFrEGQkZMQ_gCv01Lfb';
   /* La anon key es pública por diseño; la seguridad la dan las políticas RLS de setup.sql. */
-  var WA_NUMBER = 'PEGA_AQUI_EL_NUMERO_DE_WHATSAPP'; /* solo dígitos con código de país, ej. 50255551234 */
+  var CONTACT_EMAIL = 'globaldental3d@gmail.com';   /* a donde llegan los pedidos de información */
 
   var configured = /^https:\/\/[a-z0-9-]+\.supabase\.co/i.test(SUPABASE_URL) && SUPABASE_ANON_KEY.indexOf('PEGA_') !== 0;
-  var waOk = /^\d{8,15}$/.test(WA_NUMBER);
   var sb = null;
   if (configured && window.supabase) {
     try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch (e) { sb = null; }
@@ -870,17 +1282,20 @@ footer .f-info{display:grid;gap:2px}
       fgTitle: 'Forgot your password?', fgSub: 'Enter your email and we will send you a link to reset it.',
       fgSw: '', fgSwBtn: 'Back to sign in',
       rsTitle: 'New password', rsSub: 'Choose a new password for your account.',
+      newTitle: 'Account created',
+      newText: 'Your account was created successfully. Now sign in with your email and password.',
+      newBtn: 'Sign in',
       pendTitle: 'Your registration is pending approval',
       pendText: 'Thank you for registering. Your account has been created and is awaiting approval by an administrator. You will receive an email when it is activated.',
       confTitle: 'Check your email',
-      confText: 'We sent you a confirmation link. Open it to finish your registration.',
+      confText: 'We sent you a confirmation link. Open it, then come back and sign in.',
       rstTitle: 'Check your email',
       rstText: 'If that email is registered, we sent you a link to reset your password.',
       actTitle: 'Your account is active',
       actText: 'You are signed in.',
       actName: 'Welcome, {n}. You are signed in.',
       denTitle: 'Access not available',
-      denText: 'This account has not been approved. Write to info@globalclearaligners.com if you think this is a mistake.',
+      denText: 'This account has not been approved. Write to globaldental3d@gmail.com if you think this is a mistake.',
       creds: 'Incorrect email or password.',
       exists: 'This email is already registered. Try signing in.',
       unconf: 'Please confirm your email first. Check your inbox.',
@@ -891,7 +1306,9 @@ footer .f-info{display:grid;gap:2px}
       pwdone: 'Password updated. You can sign in now.',
       notcfg: 'Sign in is not available yet. Please try again soon.',
       generic: 'Something went wrong. Please try again.',
-      waText: 'Hello, I would like to register with Global Clear Aligners.'
+      waText: 'Hello, I would like to register with Global Clear Aligners.',
+      waInfo: 'Hello, I would like to request information about Global Clear Aligners.',
+      infoSubject: 'Request information', copy: 'Copy', copied: 'Copied'
     },
     es: {
       reg: 'Registrarse', acctIn: 'Iniciar sesión', acctMe: 'Mi cuenta', close: 'Cerrar', signOut: 'Cerrar sesión',
@@ -903,17 +1320,20 @@ footer .f-info{display:grid;gap:2px}
       fgTitle: '¿Olvidaste tu contraseña?', fgSub: 'Escribe tu correo y te enviaremos un enlace para restablecerla.',
       fgSw: '', fgSwBtn: 'Volver a iniciar sesión',
       rsTitle: 'Nueva contraseña', rsSub: 'Elige una nueva contraseña para tu cuenta.',
+      newTitle: 'Cuenta creada',
+      newText: 'Tu cuenta se creó correctamente. Ahora inicia sesión con tu correo y contraseña.',
+      newBtn: 'Iniciar sesión',
       pendTitle: 'Tu registro está pendiente de aprobación',
       pendText: 'Gracias por registrarte. Tu cuenta ha sido creada y está pendiente de aprobación por parte de un administrador. Recibirás un correo electrónico cuando sea activada.',
       confTitle: 'Revisa tu correo',
-      confText: 'Te enviamos un enlace de confirmación. Ábrelo para terminar tu registro.',
+      confText: 'Te enviamos un enlace de confirmación. Ábrelo y luego regresa a iniciar sesión.',
       rstTitle: 'Revisa tu correo',
       rstText: 'Si ese correo está registrado, te enviamos un enlace para restablecer tu contraseña.',
       actTitle: 'Tu cuenta está activa',
       actText: 'Has iniciado sesión.',
       actName: 'Bienvenido(a), {n}. Has iniciado sesión.',
       denTitle: 'Acceso no disponible',
-      denText: 'Esta cuenta no fue aprobada. Escribe a info@globalclearaligners.com si crees que es un error.',
+      denText: 'Esta cuenta no fue aprobada. Escribe a globaldental3d@gmail.com si crees que es un error.',
       creds: 'Correo o contraseña incorrectos.',
       exists: 'Este correo ya está registrado. Intenta iniciar sesión.',
       unconf: 'Primero confirma tu correo. Revisa tu bandeja de entrada.',
@@ -924,7 +1344,9 @@ footer .f-info{display:grid;gap:2px}
       pwdone: 'Contraseña actualizada. Ya puedes iniciar sesión.',
       notcfg: 'El inicio de sesión aún no está disponible. Inténtalo pronto.',
       generic: 'Algo salió mal. Inténtalo de nuevo.',
-      waText: 'Hola, quiero registrarme en Global Clear Aligners.'
+      waText: 'Hola, quiero registrarme en Global Clear Aligners.',
+      waInfo: 'Hola, quiero pedir información sobre Global Clear Aligners.',
+      infoSubject: 'Solicitud de información', copy: 'Copiar', copied: 'Copiado'
     }
   };
   function lang() { return document.documentElement.lang === 'es' ? 'es' : 'en'; }
@@ -935,14 +1357,14 @@ footer .f-info{display:grid;gap:2px}
   var brandImg = document.querySelector('.brand img');
   if (brandImg) [].forEach.call(document.querySelectorAll('.gm-logo'), function (i) { i.src = brandImg.src; });
 
-  var gm = $('gm'), gw = $('gw'), card = $('gm-card');
+  var gm = $('gm'), ptEl = $('pt'), card = $('gm-card');
   var btnReg = $('reg'), acct = $('acct'), msgEl = $('gm-msg');
   var fIn = $('f-in'), fUp = $('f-up'), fFg = $('f-fg'), fRs = $('f-rs');
   var head = $('gm-head'), titleEl = $('gm-title'), subEl = $('gm-sub');
   var forms = $('gm-forms'), status = $('gm-status');
   var swWrap = $('gm-switch'), swTxt = $('sw-txt'), swBtn = $('sw-btn');
   var stTitle = $('st-title'), stText = $('st-text'), stOk = $('st-ok'), stOut = $('st-out'), stIco = $('st-ico');
-  var signedIn = false, userName = '', view = 'in', statusKey = null, msgKey = null, msgOk = false, lastFocus = null;
+  var me = null, signedIn = false, userName = '', view = 'in', statusKey = null, msgKey = null, msgOk = false, lastFocus = null;
 
   /* ---------- Render ---------- */
   function renderTop() {
@@ -969,10 +1391,10 @@ footer .f-info{display:grid;gap:2px}
     var txt = t(k + 'Text');
     if (k === 'act' && userName) txt = t('actName').replace('{n}', userName);
     stText.textContent = txt;
-    stOk.textContent = t('close');
+    stOk.textContent = k === 'new' ? t('newBtn') : t('close');
     stOut.textContent = t('signOut');
     stOut.hidden = k !== 'act';
-    stIco.setAttribute('href', (k === 'pend' || k === 'conf' || k === 'rst') ? '#i-mail' : '#i-shield');
+    stIco.setAttribute('href', (k === 'pend' || k === 'conf' || k === 'rst' || k === 'new') ? '#i-mail' : '#i-shield');
   }
   function renderEyes() {
     [].forEach.call(document.querySelectorAll('.gm .eye'), function (b) {
@@ -980,17 +1402,8 @@ footer .f-info{display:grid;gap:2px}
       b.setAttribute('aria-label', shown ? t('hidePw') : t('showPw'));
     });
     $('gm-x').setAttribute('aria-label', t('close'));
-    $('gw-x').setAttribute('aria-label', t('close'));
   }
-  function waLinks() {
-    var app = $('gw-app'), web = $('gw-web'), note = $('gw-note');
-    if (!waOk) { app.href = '#'; web.href = '#'; note.hidden = false; return; }
-    var q = '&text=' + encodeURIComponent(t('waText'));
-    app.href = 'whatsapp://send?phone=' + WA_NUMBER + q;
-    web.href = 'https://web.whatsapp.com/send?phone=' + WA_NUMBER + q;
-    note.hidden = true;
-  }
-  function render() { renderTop(); renderHead(); renderMsg(); renderStatus(); renderEyes(); waLinks(); }
+  function render() { renderTop(); renderHead(); renderMsg(); renderStatus(); renderEyes(); }
 
   /* ---------- Vistas del inicio de sesión ---------- */
   function setView(v) {
@@ -1015,22 +1428,19 @@ footer .f-info{display:grid;gap:2px}
   function openLogin(v) {
     closeAll(true);
     lastFocus = document.activeElement;
-    if (signedIn && !v) showStatus('act'); else { setView(v || 'in'); }
+    if (signedIn && !v) { enterPortal(); return; }
+    setView(v || 'in');
     gm.hidden = false;
-    if (!statusKey) focusFirst(); else stOk.focus();
-  }
-  function openWa() {
-    closeAll(true);
-    lastFocus = document.activeElement;
-    waLinks();
-    gw.hidden = false;
-    $('gw-app').focus();
+    focusFirst();
   }
   function closeAll(keepFocus) {
-    gm.hidden = true; gw.hidden = true;
+    gm.hidden = true;
     if (!keepFocus && lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
   }
-  function openEl() { return !gm.hidden ? gm : (!gw.hidden ? gw : null); }
+  function openEl() { return !gm.hidden ? gm : (!ptEl.hidden ? ptEl : null); }
+  function enterPortal() {
+    if (window.GCA && window.GCA.enter) window.GCA.enter();
+  }
 
   /* ---------- Helpers de formularios ---------- */
   function busy(form, on) {
@@ -1054,7 +1464,7 @@ footer .f-info{display:grid;gap:2px}
   function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
   function val(d, k) { return (d.get(k) || '').toString(); }
   async function profileOf(uid) {
-    return sb.from('profiles').select('status,full_name').eq('id', uid).maybeSingle();
+    return sb.from('profiles').select('status,full_name,clinic').eq('id', uid).maybeSingle();
   }
 
   /* ---------- Iniciar sesión (solo entra quien ya fue aprobado) ---------- */
@@ -1070,9 +1480,12 @@ footer .f-info{display:grid;gap:2px}
       var p = await profileOf(r.data.user.id);
       if (p.error) throw p.error;
       var st = p.data && p.data.status;
-      if (st === 'approved') {
-        signedIn = true; userName = (p.data.full_name || '').split(' ')[0];
-        renderTop(); showStatus('act'); fIn.reset();
+      if (st !== 'rejected') {
+        var um = (r.data.user.user_metadata || {}), pd = p.data || {};
+        var fullName = pd.full_name || um.full_name || '';
+        signedIn = true; userName = fullName.split(' ')[0];
+        me = { id: r.data.user.id, email: r.data.user.email, name: fullName, clinic: pd.clinic || um.clinic || '' };
+        renderTop(); fIn.reset(); closeAll(true); enterPortal();
       } else {
         await sb.auth.signOut();
         showStatus(st === 'rejected' ? 'den' : 'pend');
@@ -1081,7 +1494,7 @@ footer .f-info{display:grid;gap:2px}
     finally { busy(fIn, false); }
   });
 
-  /* ---------- Crear cuenta: queda pendiente de aprobación ---------- */
+  /* ---------- Crear cuenta: se guarda y luego inicia sesión ---------- */
   fUp.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (!ready()) return;
@@ -1099,7 +1512,7 @@ footer .f-info{display:grid;gap:2px}
       if (r.error) throw r.error;
       var u = r.data && r.data.user;
       if (u && u.identities && u.identities.length === 0) { setMsg('exists'); return; }
-      if (r.data && r.data.session) { await sb.auth.signOut(); showStatus('pend'); }
+      if (r.data && r.data.session) { await sb.auth.signOut(); showStatus('new'); }
       else showStatus('conf');
       fUp.reset();
     } catch (err) { setMsg(mapErr(err)); }
@@ -1139,11 +1552,13 @@ footer .f-info{display:grid;gap:2px}
   });
 
   /* ---------- Eventos de interfaz ---------- */
-  btnReg.addEventListener('click', openWa);
+  btnReg.addEventListener('click', function () { openLogin('up'); });
   acct.addEventListener('click', function () { openLogin(); });
   $('gm-x').addEventListener('click', function () { closeAll(); });
-  $('gw-x').addEventListener('click', function () { closeAll(); });
-  stOk.addEventListener('click', function () { closeAll(); });
+  stOk.addEventListener('click', function () {
+    if (statusKey === 'new') { setView('in'); focusFirst(); }
+    else closeAll();
+  });
   stOut.addEventListener('click', async function () {
     try { if (sb) await sb.auth.signOut(); } catch (e) {}
     signedIn = false; userName = '';
@@ -1161,16 +1576,12 @@ footer .f-info{display:grid;gap:2px}
       renderEyes();
     });
   });
-  [$('gw-app'), $('gw-web')].forEach(function (a) {
-    a.addEventListener('click', function (e) { if (!waOk) e.preventDefault(); });
-  });
-
   document.addEventListener('keydown', function (e) {
     var ov = openEl();
     if (!ov) return;
-    if (e.key === 'Escape') { closeAll(); return; }
+    if (e.key === 'Escape') { if (ov !== ptEl) closeAll(); return; }
     if (e.key !== 'Tab') return;
-    var f = [].slice.call(ov.querySelectorAll('button,input,a[href]')).filter(function (el) {
+    var f = [].slice.call(ov.querySelectorAll('button,input,textarea,select,a[href]')).filter(function (el) {
       return !el.disabled && el.offsetParent !== null;
     });
     if (!f.length) return;
@@ -1190,17 +1601,397 @@ footer .f-info{display:grid;gap:2px}
         var s = res.data && res.data.session;
         if (!s) return;
         var p = await profileOf(s.user.id);
-        if (p.data && p.data.status === 'approved') {
-          signedIn = true; userName = (p.data.full_name || '').split(' ')[0];
+        if (!(p.data && p.data.status === 'rejected')) {
+          var um2 = (s.user.user_metadata || {}), pd2 = p.data || {};
+          var fn2 = pd2.full_name || um2.full_name || '';
+          signedIn = true; userName = fn2.split(' ')[0];
+          me = { id: s.user.id, email: s.user.email, name: fn2, clinic: pd2.clinic || um2.clinic || '' };
         } else { await sb.auth.signOut(); }
         renderTop();
       }).catch(function () {});
     }
   }
 
+  /* Puente con la pantalla del portal (app.js) */
+  window.GCA = {
+    get sb() { return sb; },
+    get me() { return me; },
+    t: t, lang: lang,
+    signedOut: function () { signedIn = false; userName = ''; me = null; renderTop(); }
+  };
+
   /* Seguir el cambio de idioma EN/ES del sitio */
   new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   render();
+})();
+</script>
+
+<script>
+(function () {
+  var G = window.GCA, pt = document.getElementById('pt');
+  if (!G || !pt) return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var P = {
+    en: {
+      hi: 'Hello, {n}', hiNoName: 'Welcome',
+      s_aligners: 'Order aligners', s_refinement: 'Refinements', s_models: '3D model printing', s_guards: 'Night guards and retainers',
+      st_received: 'Received', st_in_progress: 'In progress', st_shipped: 'Shipped', st_done: 'Completed', st_cancelled: 'Cancelled',
+      noOrders: 'You have no orders yet.', loading: 'Loading…', loadErr: 'Could not load your orders.',
+      uploading: 'Uploading files ({i}/{n})…', sending: 'Sending your order…', tooBig: 'Each file must be 50 MB or smaller.',
+      files: '{n} files selected', noNotif: 'No new notifications.',
+      themeDark: 'Switch to dark mode', themeLight: 'Switch to light mode',
+      menu: 'Menu', notifs: 'Notifications', account: 'Account', langBtn: 'Cambiar a español', close: 'Close',
+      tooth: 'Tooth {n}', tooth_normal: 'normal', tooth_absent: 'missing', tooth_implant: 'implant', tooth_fixed: 'do not move',
+      pwSent: 'We sent a link to your email to change your password.', ref: 'Order reference'
+    },
+    es: {
+      hi: 'Hola, {n}', hiNoName: 'Bienvenido(a)',
+      s_aligners: 'Ordenar alineadores', s_refinement: 'Refinamientos', s_models: 'Impresión de modelos', s_guards: 'Guardas nocturnos y retenedores',
+      st_received: 'Recibido', st_in_progress: 'En proceso', st_shipped: 'Enviado', st_done: 'Finalizado', st_cancelled: 'Cancelado',
+      noOrders: 'Aún no tienes pedidos.', loading: 'Cargando…', loadErr: 'No pudimos cargar tus pedidos.',
+      uploading: 'Subiendo archivos ({i}/{n})…', sending: 'Enviando tu pedido…', tooBig: 'Cada archivo debe pesar 50 MB o menos.',
+      files: '{n} archivos seleccionados', noNotif: 'No tienes notificaciones nuevas.',
+      themeDark: 'Cambiar a modo oscuro', themeLight: 'Cambiar a modo claro',
+      menu: 'Menú', notifs: 'Notificaciones', account: 'Cuenta', langBtn: 'Switch to English', close: 'Cerrar',
+      tooth: 'Diente {n}', tooth_normal: 'normal', tooth_absent: 'ausente', tooth_implant: 'implante', tooth_fixed: 'no mover',
+      pwSent: 'Te enviamos un enlace a tu correo para cambiar tu contraseña.', ref: 'Referencia del pedido'
+    }
+  };
+  function L() { return G.lang(); }
+  function p(k) { return P[L()][k]; }
+
+  var form = $('f-order'), msg = $('ord-msg');
+  var svc = null, view = 'products', ordersCache = null, prevTheme = null, sending = false;
+  var teeth = {};
+
+  /* ---------- Odontograma ---------- */
+  var UP = [18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28];
+  var LO = [48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38];
+  var ST = ['normal', 'absent', 'implant', 'fixed'];
+  function toothLabel(b) { return p('tooth').replace('{n}', b.getAttribute('data-n')) + ': ' + p('tooth_' + b.getAttribute('data-st')); }
+  function buildTeeth() {
+    var host = $('odo'); host.innerHTML = '';
+    [UP, LO].forEach(function (row, ri) {
+      var r = document.createElement('div'); r.className = 'odo-row' + (ri ? ' lo' : '');
+      row.forEach(function (n) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'tooth'; b.setAttribute('data-n', n); b.setAttribute('data-st', 'normal');
+        b.innerHTML = '<i></i><span>' + n + '</span>';
+        b.setAttribute('aria-label', toothLabel(b));
+        b.addEventListener('click', function () {
+          var next = ST[(ST.indexOf(b.getAttribute('data-st')) + 1) % ST.length];
+          b.setAttribute('data-st', next);
+          if (next === 'normal') delete teeth[n]; else teeth[n] = next;
+          b.setAttribute('aria-label', toothLabel(b));
+        });
+        r.appendChild(b);
+      });
+      host.appendChild(r);
+    });
+  }
+  function resetTeeth() { teeth = {}; [].forEach.call(pt.querySelectorAll('.tooth'), function (b) { b.setAttribute('data-st', 'normal'); b.setAttribute('aria-label', toothLabel(b)); }); }
+  function refreshTeethLabels() { [].forEach.call(pt.querySelectorAll('.tooth'), function (b) { b.setAttribute('aria-label', toothLabel(b)); }); }
+  function teethSummary() {
+    var names = { absent: 'Ausente', implant: 'Implante', fixed: 'No mover' }, g = {}, out = [];
+    Object.keys(teeth).forEach(function (n) { (g[teeth[n]] = g[teeth[n]] || []).push(n); });
+    ['absent', 'implant', 'fixed'].forEach(function (k) { if (g[k]) out.push(names[k] + ': ' + g[k].sort().join(', ')); });
+    return out.join('; ');
+  }
+
+  /* ---------- Vistas ---------- */
+  var VIEWS = ['products', 'order', 'orders', 'settings', 'done'];
+  function showView(v) {
+    view = v;
+    VIEWS.forEach(function (n) { $('v-' + n).hidden = n !== v; });
+    var navKey = (v === 'order' || v === 'done') ? 'products' : v;
+    [].forEach.call(pt.querySelectorAll('.pt-nav[data-v]'), function (b) {
+      var on = b.getAttribute('data-v') === navKey;
+      b.classList.toggle('on', on);
+      if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+    });
+    closeSide(); closePops();
+    $('pt-main').scrollTop = 0;
+    if (v === 'orders') showOrders();
+    if (v === 'settings') renderSettings();
+  }
+
+  /* ---------- Menú lateral y ventanitas ---------- */
+  var side = $('pt-side'), scrim = $('pt-scrim');
+  function openSide() { side.classList.add('open'); scrim.hidden = false; $('pt-menu').setAttribute('aria-expanded', 'true'); var f = side.querySelector('.pt-nav.on') || side.querySelector('button'); if (f) f.focus(); }
+  function closeSide() { side.classList.remove('open'); scrim.hidden = true; $('pt-menu').setAttribute('aria-expanded', 'false'); }
+  function closePops() {
+    $('pt-bellpop').hidden = true; $('pt-avpop').hidden = true;
+    $('pt-bell').setAttribute('aria-expanded', 'false'); $('pt-av').setAttribute('aria-expanded', 'false');
+  }
+  $('pt-menu').addEventListener('click', function () { side.classList.contains('open') ? closeSide() : openSide(); });
+  $('pt-side-x').addEventListener('click', function () { closeSide(); $('pt-menu').focus(); });
+  scrim.addEventListener('click', closeSide);
+  $('pt-lang').addEventListener('click', function () { var b = document.getElementById('lang'); if (b) b.click(); });
+
+  $('pt-av').addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = $('pt-avpop').hidden;
+    closePops();
+    if (open) { $('pt-avpop').hidden = false; $('pt-av').setAttribute('aria-expanded', 'true'); }
+  });
+  $('pt-bell').addEventListener('click', async function (e) {
+    e.stopPropagation();
+    var open = $('pt-bellpop').hidden;
+    closePops();
+    if (!open) return;
+    var pop = $('pt-bellpop');
+    pop.hidden = false; $('pt-bell').setAttribute('aria-expanded', 'true');
+    pop.innerHTML = '';
+    var line = document.createElement('p'); line.className = 'pt-pop-0'; line.textContent = p('loading'); pop.appendChild(line);
+    try {
+      var list = await loadOrders(true);
+      pop.innerHTML = '';
+      if (!list.length) { line.textContent = p('noNotif'); pop.appendChild(line); return; }
+      list.slice(0, 5).forEach(function (o) {
+        var d = document.createElement('div'); d.className = 'pt-pop-l';
+        var b = document.createElement('b'); b.textContent = (p('s_' + o.service) || o.service) + ' · ' + o.patient;
+        var s = document.createElement('span'); s.textContent = p('st_' + o.status) || o.status;
+        d.appendChild(b); d.appendChild(s); pop.appendChild(d);
+      });
+    } catch (err) { pop.innerHTML = ''; line.textContent = p('loadErr'); pop.appendChild(line); }
+  });
+  document.addEventListener('click', function (e) {
+    if (pt.hidden) return;
+    if (!e.target.closest('.pt-pop') && !e.target.closest('#pt-av') && !e.target.closest('#pt-bell')) closePops();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (pt.hidden || e.key !== 'Escape') return;
+    if (!$('pt-bellpop').hidden || !$('pt-avpop').hidden) { closePops(); return; }
+    if (side.classList.contains('open')) { closeSide(); $('pt-menu').focus(); }
+  });
+
+  /* Navegación del menú lateral y de la ventanita de cuenta */
+  pt.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-v]');
+    if (!b || !pt.contains(b) || b.classList.contains('pt-card')) return;
+    var v = b.getAttribute('data-v');
+    if (v === 'site') { exit(); return; }
+    showView(v);
+  });
+
+  /* ---------- Productos ---------- */
+  $('pt-grid').addEventListener('click', function (e) {
+    var card = e.target.closest('.pt-card');
+    if (card && e.target.closest('.pt-pedir')) openOrder(card.getAttribute('data-svc'));
+  });
+  $('pt-q').addEventListener('input', function () {
+    var q = this.value.trim().toLowerCase(), shown = 0;
+    [].forEach.call($('pt-grid').children, function (c) {
+      var t = (c.querySelector('h3').textContent + ' ' + (c.getAttribute('data-s') || '')).toLowerCase();
+      var ok = !q || t.indexOf(q) > -1;
+      c.hidden = !ok; if (ok) shown++;
+    });
+    $('pt-empty').hidden = shown > 0;
+  });
+
+  /* ---------- Formulario de pedido ---------- */
+  function applySvc(s) {
+    svc = s;
+    [].forEach.call(form.querySelectorAll('[data-svc]'), function (b) {
+      var on = b.getAttribute('data-svc').split(' ').indexOf(s) > -1;
+      b.hidden = !on;
+      [].forEach.call(b.querySelectorAll('input,textarea,select'), function (i) { i.disabled = !on; });
+    });
+  }
+  function setMsg(text, ok) { msg.textContent = text || ''; msg.className = 'gm-msg' + (text ? (ok ? ' ok' : ' err') : ''); }
+  function updateDz(inp) {
+    var n = inp.closest('.dz').querySelector('.dz-n'), f = inp.files;
+    n.textContent = (!f || !f.length) ? '' : (f.length === 1 ? f[0].name : p('files').replace('{n}', f.length));
+  }
+  form.addEventListener('change', function (e) { if (e.target.type === 'file') updateDz(e.target); });
+
+  function openOrder(s) {
+    form.reset(); resetTeeth(); setMsg('');
+    [].forEach.call(form.querySelectorAll('input[type=file]'), updateDz);
+    applySvc(s);
+    var me = G.me;
+    $('o-doctor').value = me && me.name ? me.name : '';
+    $('o-date').min = new Date().toISOString().slice(0, 10);
+    $('ord-title').textContent = p('s_' + s);
+    showView('order');
+    $('o-patient').focus();
+  }
+  $('ord-back').addEventListener('click', function () { showView('products'); });
+
+  function es(el) { return ((el && (el.getAttribute('data-es') || el.textContent)) || '').trim(); }
+  function labelEs(lab) { if (!lab) return ''; return es(lab.hasAttribute('data-es') ? lab : (lab.querySelector('[data-es]') || lab)); }
+  function qOf(i) {
+    var fs = i.closest('fieldset');
+    if (fs) { var lg = fs.querySelector('legend'); if (lg) return es(lg); }
+    return labelEs(form.querySelector('label[for="' + i.id + '"]'));
+  }
+  function collect() {
+    var rows = [], map = {};
+    [].forEach.call(form.querySelectorAll('input,textarea,select'), function (i) {
+      if (i.disabled || i.type === 'file') return;
+      var v;
+      if (i.type === 'radio' || i.type === 'checkbox') { if (!i.checked) return; v = labelEs(i.closest('label')); }
+      else { v = (i.value || '').trim(); if (!v) return; }
+      var q = qOf(i);
+      if (!map[q]) { map[q] = { q: q, a: [] }; rows.push(map[q]); }
+      map[q].a.push(v);
+    });
+    var out = rows.map(function (r) { return { q: r.q, a: r.a.join(', ') }; });
+    var ts = teethSummary(); if (ts) out.push({ q: 'Odontograma', a: ts });
+    return out;
+  }
+  function uuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 3 | 8)).toString(16); });
+  }
+  function safe(n) { return n.replace(/[^\w.\-]+/g, '_').slice(-80) || 'file'; }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (sending) return;
+    var sb = G.sb, me = G.me;
+    if (!sb || !me) { setMsg(G.t('notcfg')); return; }
+    var req = ['o-patient', 'o-doctor', 'o-address'];
+    for (var k = 0; k < req.length; k++) {
+      if (!$(req[k]).value.trim()) { setMsg(G.t('fill')); $(req[k]).focus(); return; }
+    }
+    var picked = [];
+    [].forEach.call(form.querySelectorAll('input[type=file]:not(:disabled)'), function (inp) {
+      var slot = labelEs($(inp.getAttribute('aria-labelledby')));
+      [].forEach.call(inp.files || [], function (f) { picked.push({ slot: slot, file: f }); });
+    });
+    for (var j = 0; j < picked.length; j++) {
+      if (picked[j].file.size > 50 * 1024 * 1024) { setMsg(p('tooBig')); return; }
+    }
+    var btn = $('ord-send'); sending = true; btn.disabled = true; btn.setAttribute('aria-busy', 'true');
+    try {
+      var id = uuid(), uploaded = [];
+      for (var n = 0; n < picked.length; n++) {
+        setMsg(p('uploading').replace('{i}', n + 1).replace('{n}', picked.length), true);
+        var path = me.id + '/' + id + '/' + (n + 1) + '-' + safe(picked[n].file.name);
+        var up = await sb.storage.from('case-files').upload(path, picked[n].file, { upsert: false });
+        if (up.error) throw up.error;
+        uploaded.push({ slot: picked[n].slot, name: picked[n].file.name, path: path, size: picked[n].file.size, type: picked[n].file.type });
+      }
+      setMsg(p('sending'), true);
+      var ins = await sb.from('orders').insert({
+        id: id, user_id: me.id, service: svc,
+        patient: $('o-patient').value.trim(), doctor: $('o-doctor').value.trim(), delivery_address: $('o-address').value.trim(),
+        details: { summary: collect(), teeth: teeth }, files: uploaded
+      });
+      if (ins.error) throw ins.error;
+      ordersCache = null;
+      $('done-ref').textContent = p('ref') + ': #' + id.slice(0, 8).toUpperCase();
+      setMsg('');
+      showView('done');
+    } catch (err) { setMsg(G.t('generic')); }
+    finally { sending = false; btn.disabled = false; btn.removeAttribute('aria-busy'); }
+  });
+  $('done-orders').addEventListener('click', function () { showView('orders'); });
+  $('done-more').addEventListener('click', function () { showView('products'); });
+
+  /* ---------- Pedidos ---------- */
+  async function loadOrders(force) {
+    var sb = G.sb;
+    if (!sb) return [];
+    if (ordersCache && !force) return ordersCache;
+    var r = await sb.from('orders').select('id,service,patient,status,created_at').order('created_at', { ascending: false }).limit(50);
+    if (r.error) throw r.error;
+    ordersCache = r.data || [];
+    return ordersCache;
+  }
+  function fmtDate(x) {
+    try { return new Date(x).toLocaleDateString(L() === 'es' ? 'es-GT' : 'en-US', { day: '2-digit', month: 'short', year: 'numeric' }); } catch (e) { return ''; }
+  }
+  function renderOrders() {
+    var box = $('ord-list'); box.innerHTML = '';
+    var list = ordersCache || [];
+    if (!list.length) { var z = document.createElement('p'); z.className = 'ord-0'; z.textContent = p('noOrders'); box.appendChild(z); return; }
+    list.forEach(function (o) {
+      var r = document.createElement('div'); r.className = 'ord-row';
+      var b = document.createElement('b'); b.textContent = p('s_' + o.service) || o.service;
+      var s = document.createElement('small'); s.textContent = o.patient + ' · ' + fmtDate(o.created_at) + ' · #' + String(o.id).slice(0, 8).toUpperCase();
+      var pill = document.createElement('span'); pill.className = 'ord-pill'; pill.setAttribute('data-s', o.status); pill.textContent = p('st_' + o.status) || o.status;
+      r.appendChild(b); r.appendChild(pill); r.appendChild(s); box.appendChild(r);
+    });
+  }
+  async function showOrders() {
+    var box = $('ord-list'); box.innerHTML = '';
+    var l = document.createElement('p'); l.className = 'ord-0'; l.textContent = p('loading'); box.appendChild(l);
+    try { await loadOrders(true); renderOrders(); }
+    catch (e) { l.textContent = p('loadErr'); }
+  }
+
+  /* ---------- Configuración y cuenta ---------- */
+  function initials(me) {
+    var src = (me && (me.name || me.email)) || '';
+    var w = src.replace(/@.*/, '').trim().split(/\s+/).filter(Boolean);
+    return ((w[0] || '?')[0] + (w.length > 1 ? w[w.length - 1][0] : '')).toUpperCase();
+  }
+  function renderSettings() {
+    var me = G.me || {};
+    $('set-n').textContent = me.name || '—'; $('set-c').textContent = me.clinic || '—'; $('set-e').textContent = me.email || '—';
+  }
+  $('set-pw').addEventListener('click', async function () {
+    var me = G.me, sm = $('set-msg');
+    if (!G.sb || !me) return;
+    try {
+      var r = await G.sb.auth.resetPasswordForEmail(me.email, { redirectTo: location.origin + location.pathname });
+      if (r.error) throw r.error;
+      sm.textContent = p('pwSent'); sm.className = 'gm-msg ok';
+    } catch (e) { sm.textContent = G.t('generic'); sm.className = 'gm-msg err'; }
+  });
+  async function signOut() {
+    try { if (G.sb) await G.sb.auth.signOut(); } catch (e) {}
+    G.signedOut();
+    exit();
+  }
+  $('set-out').addEventListener('click', signOut);
+  $('pt-av-out').addEventListener('click', signOut);
+
+  /* ---------- Entrar y salir del portal ---------- */
+  function enter() {
+    var me = G.me; if (!me) return;
+    prevTheme = document.documentElement.getAttribute('data-theme');
+    ordersCache = null; $('pt-q').value = '';
+    [].forEach.call($('pt-grid').children, function (c) { c.hidden = false; });
+    $('pt-empty').hidden = true;
+    pt.hidden = false;
+    showView('products');
+    render();
+    if (G.sb) { try { var r = G.sb.rpc('mark_welcome'); if (r && r.then) r.then(function () {}, function () {}); } catch (e) {} }
+    $('pt-main').focus();
+  }
+  function exit() {
+    pt.hidden = true; closeSide(); closePops();
+    if (prevTheme) document.documentElement.setAttribute('data-theme', prevTheme); else document.documentElement.removeAttribute('data-theme');
+    var a = $('acct'); if (a) { try { a.focus(); } catch (e) {} }
+  }
+  G.enter = enter;
+
+  /* ---------- Textos que cambian con el idioma ---------- */
+  function render() {
+    var me = G.me, first = ((me && me.name) || '').split(' ')[0];
+    $('pt-hi').textContent = first ? p('hi').replace('{n}', first) : p('hiNoName');
+    [].forEach.call(pt.querySelectorAll('[data-ph-en]'), function (el) { el.placeholder = el.getAttribute(L() === 'es' ? 'data-ph-es' : 'data-ph-en'); });
+    $('pt-lang').setAttribute('aria-checked', L() === 'es' ? 'true' : 'false');
+    $('pt-menu').setAttribute('aria-label', p('menu'));
+    $('pt-side-x').setAttribute('aria-label', p('close'));
+    $('pt-bell').setAttribute('aria-label', p('notifs'));
+    $('pt-av').setAttribute('aria-label', p('account'));
+    $('pt-ini').textContent = initials(me);
+    $('pt-av-n').textContent = (me && me.name) || '';
+    $('pt-av-e').textContent = (me && me.email) || '';
+    if (svc) $('ord-title').textContent = p('s_' + svc);
+    refreshTeethLabels(); renderSettings();
+    [].forEach.call(form.querySelectorAll('input[type=file]'), updateDz);
+    if (view === 'orders' && ordersCache) renderOrders();
+    var ref = $('done-ref').textContent; if (ref && ref.indexOf('#') > -1) $('done-ref').textContent = p('ref') + ': ' + ref.slice(ref.indexOf('#'));
+  }
+  new MutationObserver(function () { if (!pt.hidden) render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+  buildTeeth();
 })();
 </script>
 
