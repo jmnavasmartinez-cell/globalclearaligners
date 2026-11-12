@@ -446,6 +446,17 @@ textarea.in{resize:vertical;min-height:96px}
 .ord-pill[data-s="in_progress"]{background:#FFF1BF;color:#5C4400}
 .ord-pill[data-s="cancelled"]{background:#F8D9D6;color:#6E1A12}
 .ord-0{color:var(--muted);padding:10px 2px}
+.ord-detail{grid-column:1/-1;border-top:1px solid var(--line);margin-top:12px;padding-top:12px;display:grid;gap:10px}
+.ord-detail h4{margin:0;font-size:.9rem;font-weight:700;color:var(--fg)}
+.ord-detail p{margin:0;color:var(--muted);font-size:.88rem;overflow-wrap:anywhere}
+.ord-detail dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:0}
+.ord-detail dt{font-size:.75rem;color:var(--muted);font-weight:600}
+.ord-detail dd{margin:2px 0 0;font-size:.9rem;overflow-wrap:anywhere}
+.ord-detail ul{margin:0;padding-left:20px}
+.ord-detail li{font-size:.88rem;margin:4px 0;overflow-wrap:anywhere}
+.ord-file{color:var(--accent);font-weight:600;text-decoration:underline;cursor:pointer}
+.ord-toggle{grid-column:1/-1;justify-self:start;border:0;background:transparent;color:var(--accent);font:inherit;font-size:.86rem;font-weight:700;padding:8px 0 0;cursor:pointer}
+.ord-toggle:hover{text-decoration:underline}
 
 .set-card,.done-card{margin-top:22px;max-width:560px;padding:clamp(18px,3vw,30px);background:var(--bg);border:1px solid var(--line);border-radius:22px}
 .set-dl{display:grid;gap:16px;margin:0}
@@ -1638,6 +1649,10 @@ textarea.in{resize:vertical;min-height:96px}
       s_aligners: 'Order aligners', s_refinement: 'Refinements', s_models: '3D model printing', s_guards: 'Night guards and retainers',
       st_received: 'Received', st_in_progress: 'In progress', st_shipped: 'Shipped', st_done: 'Completed', st_cancelled: 'Cancelled',
       noOrders: 'You have no orders yet.', loading: 'Loading…', loadErr: 'Could not load your orders.',
+      orderDetails: 'Full order details', showDetails: 'View full order', hideDetails: 'Hide details',
+      doctor: 'Doctor', delivery: 'Delivery address', customerId: 'Account ID', orderDate: 'Order date',
+      selectedOptions: 'Selected options', attachedFiles: 'Attached files', noFiles: 'No files attached',
+      fileUnavailable: 'File link unavailable', detailsUnavailable: 'No additional details were saved.',
       uploading: 'Uploading files ({i}/{n})…', sending: 'Sending your order…', tooBig: 'Each file must be 50 MB or smaller.',
       files: '{n} files selected', noNotif: 'No new notifications.',
       themeDark: 'Switch to dark mode', themeLight: 'Switch to light mode',
@@ -1650,6 +1665,10 @@ textarea.in{resize:vertical;min-height:96px}
       s_aligners: 'Ordenar alineadores', s_refinement: 'Refinamientos', s_models: 'Impresión de modelos', s_guards: 'Guardas nocturnos y retenedores',
       st_received: 'Recibido', st_in_progress: 'En proceso', st_shipped: 'Enviado', st_done: 'Finalizado', st_cancelled: 'Cancelado',
       noOrders: 'Aún no tienes pedidos.', loading: 'Cargando…', loadErr: 'No pudimos cargar tus pedidos.',
+      orderDetails: 'Detalles completos del pedido', showDetails: 'Ver pedido completo', hideDetails: 'Ocultar detalles',
+      doctor: 'Doctor/a', delivery: 'Dirección de entrega', customerId: 'ID de cuenta', orderDate: 'Fecha del pedido',
+      selectedOptions: 'Opciones seleccionadas', attachedFiles: 'Archivos adjuntos', noFiles: 'No hay archivos adjuntos',
+      fileUnavailable: 'Enlace del archivo no disponible', detailsUnavailable: 'No se guardaron detalles adicionales.',
       uploading: 'Subiendo archivos ({i}/{n})…', sending: 'Enviando tu pedido…', tooBig: 'Cada archivo debe pesar 50 MB o menos.',
       files: '{n} archivos seleccionados', noNotif: 'No tienes notificaciones nuevas.',
       themeDark: 'Cambiar a modo oscuro', themeLight: 'Cambiar a modo claro',
@@ -1896,24 +1915,110 @@ textarea.in{resize:vertical;min-height:96px}
     var sb = G.sb;
     if (!sb) return [];
     if (ordersCache && !force) return ordersCache;
-    var r = await sb.from('orders').select('id,service,patient,status,created_at').order('created_at', { ascending: false }).limit(50);
+    // Recupera todas las columnas; Supabase sigue aplicando sus políticas RLS.
+    var r = await sb.from('orders').select('*').order('created_at', { ascending: false }).limit(100);
     if (r.error) throw r.error;
     ordersCache = r.data || [];
     return ordersCache;
   }
   function fmtDate(x) {
-    try { return new Date(x).toLocaleDateString(L() === 'es' ? 'es-GT' : 'en-US', { day: '2-digit', month: 'short', year: 'numeric' }); } catch (e) { return ''; }
+    try { return new Date(x).toLocaleString(L() === 'es' ? 'es-GT' : 'en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; }
+  }
+  function addDetailField(dl, label, value) {
+    var wrap = document.createElement('div');
+    var dt = document.createElement('dt'); dt.textContent = label;
+    var dd = document.createElement('dd'); dd.textContent = value == null || value === '' ? '—' : String(value);
+    wrap.appendChild(dt); wrap.appendChild(dd); dl.appendChild(wrap);
+  }
+  function addDetailText(parent, value) {
+    var el = document.createElement('p');
+    el.textContent = value == null || value === '' ? '—' : String(value);
+    parent.appendChild(el);
+  }
+  function renderSummary(details, parent) {
+    var summary = details && details.summary;
+    if (!Array.isArray(summary) || !summary.length) {
+      addDetailText(parent, p('detailsUnavailable'));
+      return;
+    }
+    var ul = document.createElement('ul');
+    summary.forEach(function (item) {
+      var li = document.createElement('li');
+      li.textContent = (item && item.q ? String(item.q) + ': ' : '') +
+        (item && item.a != null ? String(item.a) : '—');
+      ul.appendChild(li);
+    });
+    parent.appendChild(ul);
+  }
+  function renderOrderFiles(files, parent) {
+    var heading = document.createElement('h4'); heading.textContent = p('attachedFiles'); parent.appendChild(heading);
+    if (!Array.isArray(files) || !files.length) { addDetailText(parent, p('noFiles')); return; }
+    var ul = document.createElement('ul'); parent.appendChild(ul);
+    files.forEach(function (f, i) {
+      f = f || {};
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.className = 'ord-file'; a.textContent = f.name || f.path || ('File ' + (i + 1));
+      a.href = '#'; a.setAttribute('role', 'button');
+      a.addEventListener('click', async function (ev) {
+        ev.preventDefault();
+        if (!f.path || !G.sb) return;
+        a.textContent = p('loading');
+        try {
+          var signed = await G.sb.storage.from('case-files').createSignedUrl(f.path, 300);
+          if (signed.error) throw signed.error;
+          if (signed.data && signed.data.signedUrl) window.open(signed.data.signedUrl, '_blank', 'noopener');
+          a.textContent = f.name || f.path;
+        } catch (err) { a.textContent = p('fileUnavailable'); }
+      });
+      li.appendChild(a);
+      if (f.slot) { var meta = document.createElement('span'); meta.textContent = ' · ' + f.slot; li.appendChild(meta); }
+      ul.appendChild(li);
+    });
   }
   function renderOrders() {
     var box = $('ord-list'); box.innerHTML = '';
     var list = ordersCache || [];
     if (!list.length) { var z = document.createElement('p'); z.className = 'ord-0'; z.textContent = p('noOrders'); box.appendChild(z); return; }
     list.forEach(function (o) {
-      var r = document.createElement('div'); r.className = 'ord-row';
-      var b = document.createElement('b'); b.textContent = p('s_' + o.service) || o.service;
-      var s = document.createElement('small'); s.textContent = o.patient + ' · ' + fmtDate(o.created_at) + ' · #' + String(o.id).slice(0, 8).toUpperCase();
-      var pill = document.createElement('span'); pill.className = 'ord-pill'; pill.setAttribute('data-s', o.status); pill.textContent = p('st_' + o.status) || o.status;
-      r.appendChild(b); r.appendChild(pill); r.appendChild(s); box.appendChild(r);
+      var row = document.createElement('div'); row.className = 'ord-row';
+      var b = document.createElement('b'); b.textContent = p('s_' + o.service) || o.service || '—';
+      var s = document.createElement('small');
+      s.textContent = (o.patient || '—') + ' · ' + fmtDate(o.created_at) + ' · #' + String(o.id || '').slice(0, 8).toUpperCase();
+      var pill = document.createElement('span'); pill.className = 'ord-pill';
+      pill.setAttribute('data-s', o.status || '');
+      pill.textContent = p('st_' + o.status) || o.status || '—';
+
+      var toggle = document.createElement('button'); toggle.type = 'button'; toggle.className = 'ord-toggle';
+      toggle.textContent = p('showDetails');
+      var detail = document.createElement('div'); detail.className = 'ord-detail'; detail.hidden = true;
+      var heading = document.createElement('h4'); heading.textContent = p('orderDetails'); detail.appendChild(heading);
+      var dl = document.createElement('dl');
+      addDetailField(dl, 'Paciente', o.patient);
+      addDetailField(dl, p('doctor'), o.doctor);
+      addDetailField(dl, p('delivery'), o.delivery_address);
+      addDetailField(dl, p('orderDate'), fmtDate(o.created_at));
+      addDetailField(dl, p('customerId'), o.user_id);
+      addDetailField(dl, 'Referencia', o.id);
+      detail.appendChild(dl);
+
+      var optsHeading = document.createElement('h4'); optsHeading.textContent = p('selectedOptions'); detail.appendChild(optsHeading);
+      renderSummary(o.details, detail);
+      if (o.details && o.details.teeth && typeof o.details.teeth === 'object') {
+        var th = document.createElement('h4'); th.textContent = 'Odontograma'; detail.appendChild(th);
+        var pre = document.createElement('pre');
+        pre.style.cssText = 'margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:.86rem;color:var(--muted)';
+        pre.textContent = JSON.stringify(o.details.teeth, null, 2);
+        detail.appendChild(pre);
+      }
+      renderOrderFiles(o.files, detail);
+
+      toggle.addEventListener('click', function () {
+        detail.hidden = !detail.hidden;
+        toggle.textContent = detail.hidden ? p('showDetails') : p('hideDetails');
+      });
+      row.appendChild(b); row.appendChild(pill); row.appendChild(s); row.appendChild(toggle); row.appendChild(detail);
+      box.appendChild(row);
     });
   }
   async function showOrders() {
