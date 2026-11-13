@@ -763,7 +763,6 @@ textarea.in{resize:vertical;min-height:96px}
             <input id="in-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
             <div class="gm-row">
               <label for="in-pw" data-es="Contraseña">Password</label>
-              <button class="gm-link" type="button" id="go-fg" data-es="¿Olvidaste tu contraseña?">Forgot your password?</button>
             </div>
             <div class="pw">
               <input id="in-pw" name="password" type="password" autocomplete="current-password" required>
@@ -1085,7 +1084,6 @@ textarea.in{resize:vertical;min-height:96px}
           </dl>
           <p class="gm-msg" id="set-msg" role="status" aria-live="polite"></p>
           <div class="set-act">
-            <button class="btn btn-ghost" id="set-pw" type="button" data-es="Cambiar contraseña">Change password</button>
             <button class="btn btn-primary" id="set-out" type="button" data-es="Cerrar sesión">Sign out</button>
           </div>
         </div>
@@ -1585,7 +1583,6 @@ textarea.in{resize:vertical;min-height:96px}
     signedIn = false; userName = '';
     setView('in'); focusFirst();
   });
-  $('go-fg').addEventListener('click', function () { setView('fg'); focusFirst(); });
   swBtn.addEventListener('click', function () { setView(view === 'in' ? 'up' : 'in'); focusFirst(); });
   $('go-home').addEventListener('click', function () { closeAll(true); });
   [].forEach.call(document.querySelectorAll('.gm .eye'), function (b) {
@@ -2054,15 +2051,6 @@ textarea.in{resize:vertical;min-height:96px}
     var me = G.me || {};
     $('set-n').textContent = me.name || '—'; $('set-c').textContent = me.clinic || '—'; $('set-e').textContent = me.email || '—';
   }
-  $('set-pw').addEventListener('click', async function () {
-    var me = G.me, sm = $('set-msg');
-    if (!G.sb || !me) return;
-    try {
-      var r = await G.sb.auth.resetPasswordForEmail(me.email, { redirectTo: location.origin + location.pathname });
-      if (r.error) throw r.error;
-      sm.textContent = p('pwSent'); sm.className = 'gm-msg ok';
-    } catch (e) { sm.textContent = G.t('generic'); sm.className = 'gm-msg err'; }
-  });
   async function signOut() {
     try { if (G.sb) await G.sb.auth.signOut(); } catch (e) {}
     G.signedOut();
