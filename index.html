@@ -446,17 +446,19 @@ textarea.in{resize:vertical;min-height:96px}
 .ord-pill[data-s="in_progress"]{background:#FFF1BF;color:#5C4400}
 .ord-pill[data-s="cancelled"]{background:#F8D9D6;color:#6E1A12}
 .ord-0{color:var(--muted);padding:10px 2px}
-.ord-detail{grid-column:1/-1;border-top:1px solid var(--line);margin-top:12px;padding-top:12px;display:grid;gap:10px}
-.ord-detail h4{margin:0;font-size:.9rem;font-weight:700;color:var(--fg)}
-.ord-detail p{margin:0;color:var(--muted);font-size:.88rem;overflow-wrap:anywhere}
-.ord-detail dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:0}
-.ord-detail dt{font-size:.75rem;color:var(--muted);font-weight:600}
-.ord-detail dd{margin:2px 0 0;font-size:.9rem;overflow-wrap:anywhere}
-.ord-detail ul{margin:0;padding-left:20px}
-.ord-detail li{font-size:.88rem;margin:4px 0;overflow-wrap:anywhere}
-.ord-file{color:var(--accent);font-weight:600;text-decoration:underline;cursor:pointer}
-.ord-toggle{grid-column:1/-1;justify-self:start;border:0;background:transparent;color:var(--accent);font:inherit;font-size:.86rem;font-weight:700;padding:8px 0 0;cursor:pointer}
-.ord-toggle:hover{text-decoration:underline}
+.adm-list{max-width:900px}
+.adm-row small{grid-column:1}
+.adm-sel{grid-row:1/3;grid-column:2;height:36px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg-2);color:var(--fg);font:inherit;font-size:.85rem;font-weight:600}
+.adm-more{grid-column:1/3;justify-self:start;margin-top:8px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--accent);font:inherit;font-size:.82rem;font-weight:600;cursor:pointer}
+.adm-box{grid-column:1/3;margin-top:8px;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:8px;font-size:.86rem}
+.adm-dl{display:grid;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.adm-it{display:grid;grid-template-columns:minmax(120px,34%) 1fr;gap:4px 14px;padding:9px 12px;background:var(--bg)}
+.adm-it:nth-child(even){background:var(--bg-2)}
+.adm-q{color:var(--muted);font-size:.8rem;font-weight:600}
+.adm-a{color:var(--fg);font-size:.88rem;overflow-wrap:anywhere}
+@media (max-width:560px){.adm-it{grid-template-columns:1fr}}
+.adm-box pre{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:.8rem;color:var(--muted);max-height:260px;overflow:auto}
+.adm-file{justify-self:start;padding:5px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg-2);color:var(--fg);font:inherit;font-size:.82rem;cursor:pointer}
 
 .set-card,.done-card{margin-top:22px;max-width:560px;padding:clamp(18px,3vw,30px);background:var(--bg);border:1px solid var(--line);border-radius:22px}
 .set-dl{display:grid;gap:16px;margin:0}
@@ -830,6 +832,7 @@ textarea.in{resize:vertical;min-height:96px}
       <button class="pt-nav on" type="button" data-v="products"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9z M7 5.5H6a1 1 0 0 0-1 1V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6.5a1 1 0 0 0-1-1h-1"/></svg><span data-es="Productos">Products</span></button>
       <button class="pt-nav" type="button" data-v="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11 M9 12h11 M9 18h11 M4.5 6h.01 M4.5 12h.01 M4.5 18h.01"/></svg><span data-es="Pedidos">Orders</span></button>
       <button class="pt-nav" type="button" data-v="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-gear"/></svg><span data-es="Configuración">Settings</span></button>
+      <button class="pt-nav" id="nav-admin" type="button" data-v="admin" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z M9 12l2 2 4-4"/></svg><span data-es="Administración">Admin</span></button>
       <button class="pt-nav pt-nav-site" type="button" data-v="site"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l-6 6 6 6 M4 12h16"/></svg><span data-es="Volver al sitio">Back to the site</span></button>
     </nav>
   </aside>
@@ -1062,6 +1065,13 @@ textarea.in{resize:vertical;min-height:96px}
         <h1 class="pt-h" data-es="Pedidos">Orders</h1>
         <p class="pt-sub" data-es="Tus pedidos recientes y su estado.">Your recent orders and their status.</p>
         <div id="ord-list" class="ord-list" aria-live="polite"></div>
+      </section>
+
+      <!-- Admin -->
+      <section id="v-admin" class="pt-view" hidden>
+        <h1 class="pt-h" data-es="Administración">Admin</h1>
+        <p class="pt-sub" data-es="Todos los pedidos de los clientes. Cambia el estado desde la lista.">All customer orders. Change the status from the list.</p>
+        <div id="adm-list" class="ord-list adm-list" aria-live="polite"></div>
       </section>
 
       <!-- Settings -->
@@ -1649,10 +1659,6 @@ textarea.in{resize:vertical;min-height:96px}
       s_aligners: 'Order aligners', s_refinement: 'Refinements', s_models: '3D model printing', s_guards: 'Night guards and retainers',
       st_received: 'Received', st_in_progress: 'In progress', st_shipped: 'Shipped', st_done: 'Completed', st_cancelled: 'Cancelled',
       noOrders: 'You have no orders yet.', loading: 'Loading…', loadErr: 'Could not load your orders.',
-      orderDetails: 'Full order details', showDetails: 'View full order', hideDetails: 'Hide details',
-      doctor: 'Doctor', delivery: 'Delivery address', customerId: 'Account ID', orderDate: 'Order date',
-      selectedOptions: 'Selected options', attachedFiles: 'Attached files', noFiles: 'No files attached',
-      fileUnavailable: 'File link unavailable', detailsUnavailable: 'No additional details were saved.',
       uploading: 'Uploading files ({i}/{n})…', sending: 'Sending your order…', tooBig: 'Each file must be 50 MB or smaller.',
       files: '{n} files selected', noNotif: 'No new notifications.',
       themeDark: 'Switch to dark mode', themeLight: 'Switch to light mode',
@@ -1665,10 +1671,6 @@ textarea.in{resize:vertical;min-height:96px}
       s_aligners: 'Ordenar alineadores', s_refinement: 'Refinamientos', s_models: 'Impresión de modelos', s_guards: 'Guardas nocturnos y retenedores',
       st_received: 'Recibido', st_in_progress: 'En proceso', st_shipped: 'Enviado', st_done: 'Finalizado', st_cancelled: 'Cancelado',
       noOrders: 'Aún no tienes pedidos.', loading: 'Cargando…', loadErr: 'No pudimos cargar tus pedidos.',
-      orderDetails: 'Detalles completos del pedido', showDetails: 'Ver pedido completo', hideDetails: 'Ocultar detalles',
-      doctor: 'Doctor/a', delivery: 'Dirección de entrega', customerId: 'ID de cuenta', orderDate: 'Fecha del pedido',
-      selectedOptions: 'Opciones seleccionadas', attachedFiles: 'Archivos adjuntos', noFiles: 'No hay archivos adjuntos',
-      fileUnavailable: 'Enlace del archivo no disponible', detailsUnavailable: 'No se guardaron detalles adicionales.',
       uploading: 'Subiendo archivos ({i}/{n})…', sending: 'Enviando tu pedido…', tooBig: 'Cada archivo debe pesar 50 MB o menos.',
       files: '{n} archivos seleccionados', noNotif: 'No tienes notificaciones nuevas.',
       themeDark: 'Cambiar a modo oscuro', themeLight: 'Cambiar a modo claro',
@@ -1719,7 +1721,7 @@ textarea.in{resize:vertical;min-height:96px}
   }
 
   /* ---------- Vistas ---------- */
-  var VIEWS = ['products', 'order', 'orders', 'settings', 'done'];
+  var VIEWS = ['products', 'order', 'orders', 'settings', 'done', 'admin'];
   function showView(v) {
     view = v;
     VIEWS.forEach(function (n) { $('v-' + n).hidden = n !== v; });
@@ -1732,6 +1734,7 @@ textarea.in{resize:vertical;min-height:96px}
     closeSide(); closePops();
     $('pt-main').scrollTop = 0;
     if (v === 'orders') showOrders();
+    if (v === 'admin') showAdmin();
     if (v === 'settings') renderSettings();
   }
 
@@ -1915,110 +1918,24 @@ textarea.in{resize:vertical;min-height:96px}
     var sb = G.sb;
     if (!sb) return [];
     if (ordersCache && !force) return ordersCache;
-    // Recupera todas las columnas; Supabase sigue aplicando sus políticas RLS.
-    var r = await sb.from('orders').select('*').order('created_at', { ascending: false }).limit(100);
+    var r = await sb.from('orders').select('id,service,patient,status,created_at').order('created_at', { ascending: false }).limit(50);
     if (r.error) throw r.error;
     ordersCache = r.data || [];
     return ordersCache;
   }
   function fmtDate(x) {
-    try { return new Date(x).toLocaleString(L() === 'es' ? 'es-GT' : 'en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; }
-  }
-  function addDetailField(dl, label, value) {
-    var wrap = document.createElement('div');
-    var dt = document.createElement('dt'); dt.textContent = label;
-    var dd = document.createElement('dd'); dd.textContent = value == null || value === '' ? '—' : String(value);
-    wrap.appendChild(dt); wrap.appendChild(dd); dl.appendChild(wrap);
-  }
-  function addDetailText(parent, value) {
-    var el = document.createElement('p');
-    el.textContent = value == null || value === '' ? '—' : String(value);
-    parent.appendChild(el);
-  }
-  function renderSummary(details, parent) {
-    var summary = details && details.summary;
-    if (!Array.isArray(summary) || !summary.length) {
-      addDetailText(parent, p('detailsUnavailable'));
-      return;
-    }
-    var ul = document.createElement('ul');
-    summary.forEach(function (item) {
-      var li = document.createElement('li');
-      li.textContent = (item && item.q ? String(item.q) + ': ' : '') +
-        (item && item.a != null ? String(item.a) : '—');
-      ul.appendChild(li);
-    });
-    parent.appendChild(ul);
-  }
-  function renderOrderFiles(files, parent) {
-    var heading = document.createElement('h4'); heading.textContent = p('attachedFiles'); parent.appendChild(heading);
-    if (!Array.isArray(files) || !files.length) { addDetailText(parent, p('noFiles')); return; }
-    var ul = document.createElement('ul'); parent.appendChild(ul);
-    files.forEach(function (f, i) {
-      f = f || {};
-      var li = document.createElement('li');
-      var a = document.createElement('a');
-      a.className = 'ord-file'; a.textContent = f.name || f.path || ('File ' + (i + 1));
-      a.href = '#'; a.setAttribute('role', 'button');
-      a.addEventListener('click', async function (ev) {
-        ev.preventDefault();
-        if (!f.path || !G.sb) return;
-        a.textContent = p('loading');
-        try {
-          var signed = await G.sb.storage.from('case-files').createSignedUrl(f.path, 300);
-          if (signed.error) throw signed.error;
-          if (signed.data && signed.data.signedUrl) window.open(signed.data.signedUrl, '_blank', 'noopener');
-          a.textContent = f.name || f.path;
-        } catch (err) { a.textContent = p('fileUnavailable'); }
-      });
-      li.appendChild(a);
-      if (f.slot) { var meta = document.createElement('span'); meta.textContent = ' · ' + f.slot; li.appendChild(meta); }
-      ul.appendChild(li);
-    });
+    try { return new Date(x).toLocaleDateString(L() === 'es' ? 'es-GT' : 'en-US', { day: '2-digit', month: 'short', year: 'numeric' }); } catch (e) { return ''; }
   }
   function renderOrders() {
     var box = $('ord-list'); box.innerHTML = '';
     var list = ordersCache || [];
     if (!list.length) { var z = document.createElement('p'); z.className = 'ord-0'; z.textContent = p('noOrders'); box.appendChild(z); return; }
     list.forEach(function (o) {
-      var row = document.createElement('div'); row.className = 'ord-row';
-      var b = document.createElement('b'); b.textContent = p('s_' + o.service) || o.service || '—';
-      var s = document.createElement('small');
-      s.textContent = (o.patient || '—') + ' · ' + fmtDate(o.created_at) + ' · #' + String(o.id || '').slice(0, 8).toUpperCase();
-      var pill = document.createElement('span'); pill.className = 'ord-pill';
-      pill.setAttribute('data-s', o.status || '');
-      pill.textContent = p('st_' + o.status) || o.status || '—';
-
-      var toggle = document.createElement('button'); toggle.type = 'button'; toggle.className = 'ord-toggle';
-      toggle.textContent = p('showDetails');
-      var detail = document.createElement('div'); detail.className = 'ord-detail'; detail.hidden = true;
-      var heading = document.createElement('h4'); heading.textContent = p('orderDetails'); detail.appendChild(heading);
-      var dl = document.createElement('dl');
-      addDetailField(dl, 'Paciente', o.patient);
-      addDetailField(dl, p('doctor'), o.doctor);
-      addDetailField(dl, p('delivery'), o.delivery_address);
-      addDetailField(dl, p('orderDate'), fmtDate(o.created_at));
-      addDetailField(dl, p('customerId'), o.user_id);
-      addDetailField(dl, 'Referencia', o.id);
-      detail.appendChild(dl);
-
-      var optsHeading = document.createElement('h4'); optsHeading.textContent = p('selectedOptions'); detail.appendChild(optsHeading);
-      renderSummary(o.details, detail);
-      if (o.details && o.details.teeth && typeof o.details.teeth === 'object') {
-        var th = document.createElement('h4'); th.textContent = 'Odontograma'; detail.appendChild(th);
-        var pre = document.createElement('pre');
-        pre.style.cssText = 'margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:.86rem;color:var(--muted)';
-        pre.textContent = JSON.stringify(o.details.teeth, null, 2);
-        detail.appendChild(pre);
-      }
-      renderOrderFiles(o.files, detail);
-
-      toggle.addEventListener('click', function () {
-        detail.hidden = !detail.hidden;
-        toggle.textContent = detail.hidden ? p('showDetails') : p('hideDetails');
-      });
-      row.appendChild(b); row.appendChild(pill); row.appendChild(s); row.appendChild(toggle); row.appendChild(detail);
-      box.appendChild(row);
+      var r = document.createElement('div'); r.className = 'ord-row';
+      var b = document.createElement('b'); b.textContent = p('s_' + o.service) || o.service;
+      var s = document.createElement('small'); s.textContent = o.patient + ' · ' + fmtDate(o.created_at) + ' · #' + String(o.id).slice(0, 8).toUpperCase();
+      var pill = document.createElement('span'); pill.className = 'ord-pill'; pill.setAttribute('data-s', o.status); pill.textContent = p('st_' + o.status) || o.status;
+      r.appendChild(b); r.appendChild(pill); r.appendChild(s); box.appendChild(r);
     });
   }
   async function showOrders() {
@@ -2026,6 +1943,105 @@ textarea.in{resize:vertical;min-height:96px}
     var l = document.createElement('p'); l.className = 'ord-0'; l.textContent = p('loading'); box.appendChild(l);
     try { await loadOrders(true); renderOrders(); }
     catch (e) { l.textContent = p('loadErr'); }
+  }
+
+  /* ---------- Administración ---------- */
+  var isAdmin = false, STS = ['received', 'in_progress', 'shipped', 'done', 'cancelled'];
+  async function checkAdmin() {
+    isAdmin = false;
+    try { var r = await G.sb.rpc('is_admin'); isAdmin = r && r.data === true; } catch (e) {}
+    $('nav-admin').hidden = !isAdmin;
+  }
+  var TR = null;
+  function plain(h) { var d = document.createElement('div'); d.innerHTML = h; return d.textContent.replace(/\s+/g, ' ').trim(); }
+  function buildTr() {
+    TR = {};
+    [].forEach.call(document.querySelectorAll('[data-es][data-en]'), function (el) {
+      var k = plain(el.getAttribute('data-es')), v = plain(el.getAttribute('data-en'));
+      if (k && v && !Object.prototype.hasOwnProperty.call(TR, k)) TR[k] = v;
+    });
+    TR['Odontograma'] = 'Tooth chart';
+  }
+  function trQ(q) { if (L() === 'es') return q; if (!TR) buildTr(); return TR[q] || q; }
+  function trA(q, a) {
+    if (L() === 'es' || !a) return a;
+    if (!TR) buildTr();
+    if (q === 'Odontograma') return a.replace(/(^|; )(Ausente|Implante|No mover):/g, function (m, p1, w) { return p1 + ({ 'Ausente': 'Missing', 'Implante': 'Implant', 'No mover': 'Do not move' })[w] + ':'; });
+    return a.split(', ').map(function (x) { return TR[x] || x; }).join(', ');
+  }
+  var admOpen = {}, admData = null;
+  function admRow(o, u) {
+    var es = L() === 'es';
+    var r = document.createElement('div'); r.className = 'ord-row adm-row';
+    var b = document.createElement('b'); b.textContent = (p('s_' + o.service) || o.service) + ' · ' + o.patient;
+    var who = [u.full_name, u.clinic, u.email].filter(Boolean).join(' · ');
+    var s = document.createElement('small'); s.textContent = (who ? who + ' — ' : '') + 'Dr. ' + (o.doctor || '') + ' · ' + fmtDate(o.created_at) + ' · #' + String(o.id).slice(0, 8).toUpperCase();
+    var sel = document.createElement('select'); sel.className = 'adm-sel'; sel.setAttribute('aria-label', es ? 'Estado' : 'Status');
+    STS.forEach(function (k) { var op = document.createElement('option'); op.value = k; op.textContent = p('st_' + k); if (k === o.status) op.selected = true; sel.appendChild(op); });
+    sel.addEventListener('change', async function () {
+      sel.disabled = true;
+      var x = await G.sb.from('orders').update({ status: sel.value }).eq('id', o.id);
+      sel.disabled = false;
+      if (x.error) { sel.value = o.status; alert(es ? 'No se pudo cambiar el estado.' : 'Could not change the status.'); }
+      else { o.status = sel.value; ordersCache = null; }
+    });
+    var more = document.createElement('button'); more.type = 'button'; more.className = 'adm-more'; more.textContent = es ? 'Ver detalles y archivos' : 'View details and files';
+    var box = document.createElement('div'); box.className = 'adm-box'; box.hidden = true;
+    var sum = (o.details && o.details.summary) || [];
+    if (sum.length && sum[0] && typeof sum[0] === 'object') {
+      var dl = document.createElement('div'); dl.className = 'adm-dl';
+      sum.forEach(function (it) {
+        var row = document.createElement('div'); row.className = 'adm-it';
+        var q = document.createElement('span'); q.className = 'adm-q'; q.textContent = trQ(it.q || '');
+        var a = document.createElement('span'); a.className = 'adm-a'; a.textContent = trA(it.q || '', it.a || '');
+        row.appendChild(q); row.appendChild(a); dl.appendChild(row);
+      });
+      box.appendChild(dl);
+    } else {
+      var addr = document.createElement('div'); addr.textContent = (es ? 'Entrega: ' : 'Delivery: ') + (o.delivery_address || '');
+      var pre = document.createElement('pre'); try { pre.textContent = JSON.stringify(o.details || {}, null, 2); } catch (e) {}
+      box.appendChild(addr); box.appendChild(pre);
+    }
+    if ((o.files || []).length) {
+      var ft = document.createElement('div'); ft.className = 'adm-q'; ft.textContent = es ? 'Archivos y fotos (clic para abrir)' : 'Files and photos (click to open)';
+      box.appendChild(ft);
+    }
+    (o.files || []).forEach(function (f) {
+      var fb = document.createElement('button'); fb.type = 'button'; fb.className = 'adm-file';
+      fb.textContent = (f.slot ? f.slot + ': ' : '') + f.name;
+      fb.addEventListener('click', async function () {
+        var w = window.open('', '_blank');
+        var x = await G.sb.storage.from('case-files').createSignedUrl(f.path, 300);
+        if (x.error || !x.data) { if (w) w.close(); alert(es ? 'No se pudo abrir el archivo.' : 'Could not open the file.'); return; }
+        if (w) w.location = x.data.signedUrl; else location.href = x.data.signedUrl;
+      });
+      box.appendChild(fb);
+    });
+    box.hidden = !admOpen[o.id];
+    more.addEventListener('click', function () { box.hidden = !box.hidden; admOpen[o.id] = !box.hidden; });
+    r.appendChild(b); r.appendChild(sel); r.appendChild(s); r.appendChild(more); r.appendChild(box);
+    return r;
+  }
+  async function showAdmin() {
+    var box = $('adm-list'); box.innerHTML = '';
+    var l = document.createElement('p'); l.className = 'ord-0'; l.textContent = p('loading'); box.appendChild(l);
+    try {
+      var r = await G.sb.from('orders').select('id,user_id,service,patient,doctor,delivery_address,status,created_at,details,files').order('created_at', { ascending: false }).limit(200);
+      if (r.error) throw r.error;
+      var rows = r.data || [], ids = [], names = {};
+      rows.forEach(function (o) { if (ids.indexOf(o.user_id) < 0) ids.push(o.user_id); });
+      if (ids.length) {
+        var pr = await G.sb.from('profiles').select('id,full_name,clinic,email').in('id', ids);
+        (pr.data || []).forEach(function (u) { names[u.id] = u; });
+      }
+      admData = { rows: rows, names: names }; admRender();
+    } catch (e) { l.textContent = p('loadErr'); }
+  }
+  function admRender() {
+    var box = $('adm-list'); if (!admData) return;
+    box.innerHTML = '';
+    if (!admData.rows.length) { var z = document.createElement('p'); z.className = 'ord-0'; z.textContent = p('noOrders'); box.appendChild(z); return; }
+    admData.rows.forEach(function (o) { box.appendChild(admRow(o, admData.names[o.user_id] || {})); });
   }
 
   /* ---------- Configuración y cuenta ---------- */
@@ -2065,6 +2081,7 @@ textarea.in{resize:vertical;min-height:96px}
     pt.hidden = false;
     showView('products');
     render();
+    $('nav-admin').hidden = true; if (G.sb) checkAdmin();
     if (G.sb) { try { var r = G.sb.rpc('mark_welcome'); if (r && r.then) r.then(function () {}, function () {}); } catch (e) {} }
     $('pt-main').focus();
   }
@@ -2094,7 +2111,7 @@ textarea.in{resize:vertical;min-height:96px}
     if (view === 'orders' && ordersCache) renderOrders();
     var ref = $('done-ref').textContent; if (ref && ref.indexOf('#') > -1) $('done-ref').textContent = p('ref') + ': ' + ref.slice(ref.indexOf('#'));
   }
-  new MutationObserver(function () { if (!pt.hidden) render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  new MutationObserver(function () { if (!pt.hidden) { render(); if (view === 'admin') admRender(); } }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
   buildTeeth();
 })();
